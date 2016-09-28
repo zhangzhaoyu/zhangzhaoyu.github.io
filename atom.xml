@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangzhaoyu.github.io/"/>
-  <updated>2016-09-27T17:14:20.646Z</updated>
+  <updated>2016-09-28T01:03:41.962Z</updated>
   <id>https://zhangzhaoyu.github.io/</id>
   
   <author>
@@ -16,16 +16,49 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hello World, ZhangZhaoyu</title>
+    <link href="https://zhangzhaoyu.github.io/2016/09/27/hello-world/"/>
+    <id>https://zhangzhaoyu.github.io/2016/09/27/hello-world/</id>
+    <published>2016-09-27T15:00:00.000Z</published>
+    <updated>2016-09-28T01:03:41.962Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<!--more-->
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;
+    
+    </summary>
+    
+      <category term="diary" scheme="https://zhangzhaoyu.github.io/categories/diary/"/>
+    
+    
+      <category term="story" scheme="https://zhangzhaoyu.github.io/tags/story/"/>
+    
+  </entry>
+  
+  <entry>
     <title>流浪者和罂粟花</title>
     <link href="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/"/>
     <id>https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/</id>
     <published>2016-09-27T15:00:00.000Z</published>
-    <updated>2016-09-27T17:14:20.646Z</updated>
+    <updated>2016-09-28T00:53:53.342Z</updated>
     
     <content type="html"><![CDATA[<p>天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。</p>
 <p>渐渐地，世界暗下来了。</p>
-<p>月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。</p>
-<p>有一条小路在这轮孤月下面延伸，奔跑，不知道最终要去向的是哪个地方。小路旁边的有一盏灯火在暮色中亮起来。</p>
+<p>月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。<br><a id="more"></a><br>有一条小路在这轮孤月下面延伸，奔跑，不知道最终要去向的是哪个地方。小路旁边的有一盏灯火在暮色中亮起来。</p>
 <p>透过那微弱的灯光，在窗户里面的一个圆桌子旁边围坐一家人，有个神情坚毅里透着憔悴的男人，有个体态瘦削却流露着母爱的女人，有个鼻子里流着鼻涕的小男孩正津津有味的吃着不知道是什么的东西。在小男孩的旁边有一只小狗欢快的摇着尾巴，看着小主人津津有味的吃着的东西，眼睛里有着自己绝对忠诚的小主人。</p>
 <p>在这个有着一盏灯的小房子的后面，是一望无际的有着黄色土壤的田地。黑色的风绕过高山，掠过树梢，吹向了这片土地。</p>
 <p>哗哗… 阵阵植物叶子簌簌地摩擦的声音，彼此起伏，蔓延开来。风掀起的黑色的叶子，呼啸着奔向对面的那片漆黑之中。</p>
@@ -66,7 +99,9 @@
     
     <summary type="html">
     
-      一个流浪者与罂粟花的故事......
+      &lt;p&gt;天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。&lt;/p&gt;
+&lt;p&gt;渐渐地，世界暗下来了。&lt;/p&gt;
+&lt;p&gt;月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。&lt;br&gt;
     
     </summary>
     
@@ -74,33 +109,6 @@
     
     
       <category term="story" scheme="https://zhangzhaoyu.github.io/tags/story/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World, ZhangZhaoyu</title>
-    <link href="https://zhangzhaoyu.github.io/2016/09/27/hello-world/"/>
-    <id>https://zhangzhaoyu.github.io/2016/09/27/hello-world/</id>
-    <published>2016-09-27T02:44:31.886Z</published>
-    <updated>2016-09-27T02:44:31.886Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
     
   </entry>
   
