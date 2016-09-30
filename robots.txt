@@ -8,7 +8,7 @@ Disallow: /vendors/
 Disallow: /js/
 Disallow: /css/
 Disallow: /fonts/
-Disallow: /vendors/
-Disallow: /fancybox/
-Sitemap: hhttps://zhangzhaoyu.github.io/sitemap.xml
+Disallow: /vendor/
+
+Sitemap: https://zhangzhaoyu.github.io/sitemap.xml
 Sitemap: https://zhangzhaoyu.github.io/baidusitemap.xml
