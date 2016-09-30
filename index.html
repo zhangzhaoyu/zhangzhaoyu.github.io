@@ -3,23 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>TRAMP</title>
+    <title>TRAMP 的博客</title>
     <meta name="google-site-verification" content="gpo3ea0rGprpET5g_RxvV2aCck9ML7LgjKUPPrGb8OA" />
     <meta name="baidu-site-verification" content="vQbbxwcRRY" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="记录，仅仅为了记录那些">
 <meta property="og:type" content="website">
-<meta property="og:title" content="TRAMP">
+<meta property="og:title" content="TRAMP 的博客">
 <meta property="og:url" content="https://zhangzhaoyu.github.io/index.html">
-<meta property="og:site_name" content="TRAMP">
+<meta property="og:site_name" content="TRAMP 的博客">
 <meta property="og:description" content="记录，仅仅为了记录那些">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TRAMP">
+<meta name="twitter:title" content="TRAMP 的博客">
 <meta name="twitter:description" content="记录，仅仅为了记录那些">
     
 
     
-        <link rel="alternate" href="/atom.xml" title="TRAMP" type="application/atom+xml" />
+        <link rel="alternate" href="/atom.xml" title="TRAMP 的博客" type="application/atom+xml" />
     
 
     
@@ -60,7 +60,7 @@ var _hmt = _hmt || [];
         <div class="outer">
             <a href="/" id="logo">
                 <i class="logo"></i>
-                <span class="site-title">TRAMP</span>
+                <span class="site-title">TRAMP 的博客</span>
             </a>
             <nav id="main-nav">
                 
@@ -166,11 +166,11 @@ var _hmt = _hmt || [];
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                2
+                3
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                1
+                3
                 <span>标签</span>
             </div>
         </div>
@@ -219,6 +219,163 @@ var _hmt = _hmt || [];
 
             
             <section id="main">
+    <article id="post-spring-task-and-schedule-deep-research" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/09/30/spring-task-and-schedule-deep-research/">Spring 4.x Task 和 Schedule 概述</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/09/30/spring-task-and-schedule-deep-research/">
+            <time datetime="2016-09-30T13:53:00.000Z" itemprop="datePublished">2016-09-30</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Spring-4-x/">Spring 4.x</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Schedule/">Schedule</a>, <a class="tag-link" href="/tags/Task/">Task</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>在很多业务场景中，系统都需要用到任务调度系统。例如定期地清理Redis 缓存，周期性地检索某一条件并更新系统的资源等。在现代的应用系统中，快速地响应用户的请求，是用户体验最主要的因素之一。因此在Web 系统中异步地执行任务，也会在很多场景中经常涉及到。本文对任务调度和异步执行的Java 实现进行了总结，主要讲述一下内容：</p>
+<ul>
+<li>Java 对异步执行和任务调度的支持</li>
+<li>Spring 4.X 的异步执行和任务调度实现</li>
+</ul></p>
+            <p class="article-more-link">
+                <a href="/2016/09/30/spring-task-and-schedule-deep-research/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://zhangzhaoyu.github.io/2016/09/30/spring-task-and-schedule-deep-research/" data-id="citpucd4p0006loyvylr948ny" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://zhangzhaoyu.github.io/2016/09/30/spring-task-and-schedule-deep-research/#comments" class="article-comment-link ds-thread-count" data-thread-key="https://zhangzhaoyu.github.io/2016/09/30/spring-task-and-schedule-deep-research/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+
+    <!-- donate -->
+    
+
+</article>
+
+
+
+ 
+            
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'anicloud'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+        
+
     <article id="post-tramp-and-poppy-flower" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -276,7 +433,7 @@ var _hmt = _hmt || [];
 
 </div>
 
-    <a data-url="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/" data-id="citpckrp50002bxyvkrkhcznc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/" data-id="citpucd510009loyvw9wrma93" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -434,7 +591,7 @@ var _hmt = _hmt || [];
 
 </div>
 
-    <a data-url="https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/" data-id="citpckrox0000bxyvxjfbog2g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/" data-id="citpucd4x0008loyv88p2nlu8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -544,10 +701,29 @@ var _hmt = _hmt || [];
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2016/09/30/spring-task-and-schedule-deep-research/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/spring/spring.png)" alt="Spring 4.x Task 和 Schedule 概述" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Spring-4-x/">Spring 4.x</a></p>
+                            <p class="item-title"><a href="/2016/09/30/spring-task-and-schedule-deep-research/" class="title">Spring 4.x Task 和 Schedule 概述</a></p>
+                            <p class="item-date"><time datetime="2016-09-30T13:53:00.000Z" itemprop="datePublished">2016-09-30</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/09/27/tramp-and-poppy-flower/" class="thumbnail">
     
     
-        <span style="background-image:url(/css/images/avatar.png)" alt="流浪者和罂粟花" class="thumbnail-image"></span>
+        <span style="background-image:url(/css/images/thumb/yingsuhua.png)" alt="流浪者和罂粟花" class="thumbnail-image"></span>
     
 </a>
 
@@ -566,7 +742,7 @@ var _hmt = _hmt || [];
                             <a href="/2015/05/03/story-of-the-cloud/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(/css/images/thumb/cloud.png)" alt="雲中的故事" class="thumbnail-image"></span>
     
 </a>
 
@@ -588,7 +764,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-4-x/">Spring 4.x</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -597,7 +773,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -606,7 +782,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/story/">story</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schedule/">Schedule</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Task/">Task</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/story/">story</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -615,7 +791,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/story/" style="font-size: 10px;">story</a>
+            <a href="/tags/Schedule/" style="font-size: 10px;">Schedule</a> <a href="/tags/Task/" style="font-size: 10px;">Task</a> <a href="/tags/story/" style="font-size: 20px;">story</a>
         </div>
     </div>
 

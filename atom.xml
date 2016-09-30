@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>TRAMP</title>
+  <title>TRAMP 的博客</title>
   <subtitle>记录，仅仅为了记录那些</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangzhaoyu.github.io/"/>
-  <updated>2016-09-28T06:08:17.646Z</updated>
+  <updated>2016-09-30T13:58:53.206Z</updated>
   <id>https://zhangzhaoyu.github.io/</id>
   
   <author>
@@ -16,11 +16,104 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Spring 4.x Task 和 Schedule 概述</title>
+    <link href="https://zhangzhaoyu.github.io/2016/09/30/spring-task-and-schedule-deep-research/"/>
+    <id>https://zhangzhaoyu.github.io/2016/09/30/spring-task-and-schedule-deep-research/</id>
+    <published>2016-09-30T13:53:00.000Z</published>
+    <updated>2016-09-30T13:58:53.206Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>在很多业务场景中，系统都需要用到任务调度系统。例如定期地清理Redis 缓存，周期性地检索某一条件并更新系统的资源等。在现代的应用系统中，快速地响应用户的请求，是用户体验最主要的因素之一。因此在Web 系统中异步地执行任务，也会在很多场景中经常涉及到。本文对任务调度和异步执行的Java 实现进行了总结，主要讲述一下内容：</p>
+<ul>
+<li>Java 对异步执行和任务调度的支持</li>
+<li>Spring 4.X 的异步执行和任务调度实现</li>
+</ul>
+<a id="more"></a>
+<h1 id="Java-对异步执行和任务调度的支持"><a href="#Java-对异步执行和任务调度的支持" class="headerlink" title="Java 对异步执行和任务调度的支持"></a>Java 对异步执行和任务调度的支持</h1><p>异步执行和任务调度底层的语言支撑都是Java 的多线程技术。线程是系统进行独立运行和调度的基本单位。拥有了多线程，系统就拥有了同时处理多项任务的能力。</p>
+<h2 id="Java-实现异步调用"><a href="#Java-实现异步调用" class="headerlink" title="Java 实现异步调用"></a>Java 实现异步调用</h2><p>在Java 中要实现多线程有实现Runnable 接口和扩展Thread 类两种方式。只要将需要异步执行的任务放在run() 方法中，在主线程中启动要执行任务的子线程就可以实现任务的异步执行。如果需要实现基于时间点触发的任务调度，就需要在子线程中循环的检查系统当前的时间跟触发条件是否一致，然后触发任务的执行。该内容属于Java 多线程的基础知识，此处略过不讲。</p>
+<h2 id="Java-Timer-和-TimeTask-实现任务调度"><a href="#Java-Timer-和-TimeTask-实现任务调度" class="headerlink" title="Java Timer 和 TimeTask 实现任务调度"></a>Java Timer 和 TimeTask 实现任务调度</h2><p>为了便于开发者快速地实现任务调度，Java JDK 对任务调度的功能进行了封装，实现了Timer 和TimerTask 两个工具类。</p>
+<p><img src="/css/images/spring/timertask.png" alt="TimerTask 类"></p>
+<p>由上图，我们可以看出TimeTask 抽象类在实现Runnable 接口的基础上增加了任务cancel() 和任务scheduledExecuttionTime() 两个方法。</p>
+<p><img src="/css/images/spring/timer.png" alt="Timer 类"></p>
+<p>上图为调度类Timer 的实现。从Timer类的源码，可以看到其采用TaskQueue 来实现对多个TimeTask 的管理。TimerThread 集成自Thread 类，其mainLoop() 用来对任务进行调度。而Timer 类提供了四种重载的schedule() 方法和重载了两种sheduleAtFixedRate() 方法来实现几种基本的任务调度类型。下面的代码是采用Timer 实现的定时系统时间打印程序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class PrintTimeTask extends TimerTask &#123;</div><div class="line">    @Override</div><div class="line">        public void run() &#123;</div><div class="line">            System.out.println(new Date().toString());</div><div class="line">        &#125;</div><div class="line">                    </div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Timer timer = new Timer(&quot;hello&quot;);</div><div class="line">        timer.schedule(new PrintTimeTask(), 1000L, 2000L);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Spring-4-x-中的异步执行和任务调度"><a href="#Spring-4-x-中的异步执行和任务调度" class="headerlink" title="Spring 4.x 中的异步执行和任务调度"></a>Spring 4.x 中的异步执行和任务调度</h1><h2 id="Spring-4-x-中的异步执行"><a href="#Spring-4-x-中的异步执行" class="headerlink" title="Spring 4.x 中的异步执行"></a>Spring 4.x 中的异步执行</h2><p>Spring 作为一站式框架，为开发者提供了异步执行和任务调度的抽象接口<strong>TaskExecutor</strong> 和<strong>TaskScheduler</strong>。Spring 对这些接口的实现类支持线程池(Thread Pool) 和代理。<br>Spring 提供了对JDK 中Timer和开源的流行任务调度框架<a href="http://quartz-shceduler.org" target="_blank" rel="external">Quartz</a>的支持。Spring 通过将关联的Schedule 转化为FactoryBean 来实现。通过Spring 调度框架，开发者可以快速地通过<strong>MethodInvokingFactoryBean</strong> 来实现将POJO 类的方法转化为任务。</p>
+<h3 id="Spring-TaskExecutor"><a href="#Spring-TaskExecutor" class="headerlink" title="Spring TaskExecutor"></a>Spring TaskExecutor</h3><p><strong>TaskExecutor</strong> 接口扩展自java.util.concurrent.Executor 接口。TaskExecutor 被创建来为其他组件提供线程池调用的抽象。</p>
+<p><strong>ThreadPoolTaskExecutor</strong> 是TaskExecutor 的最主要实现类之一。该类的核心继承关系如下图所示。<br><img src="/css/images/spring/ThreadPoolTaskExecutor.png" alt="ThreadPooltaskexecutor 类"></p>
+<p>ThreadPoolTaskExecutor 接口扩展了重多的接口，让其具备了更多的能力。要实现异步需要标注@Async 注解：</p>
+<ul>
+<li>AsyncTaskExecutor 增加了返回结果为Future 的submit() 方法，该方法的参数为Callable 接口。相比Runnable 接口，多了将执行结果返回的功能。</li>
+<li>AsyncListenableTaskExecutor 接口允许返回拥有回调功能的ListenableFuture 接口，这样在结果执行完毕是，能够直接回调处理。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public class ListenableTask &#123;</div><div class="line">    @Async</div><div class="line">    public ListenableFuture&lt;Integer&gt; compute(int n) &#123;</div><div class="line">        int sum = 0;</div><div class="line">        for (int i = 0; i &lt; n; i++) &#123;</div><div class="line">            sum += i;</div><div class="line">        &#125;</div><div class="line">        return new AsyncResult&lt;&gt;(sum);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static class CallBackImpl implements </div><div class="line">        ListenableFutureCallback&lt;Integer&gt; &#123;</div><div class="line">        @Override</div><div class="line">        public void onFailure(Throwable ex) &#123;</div><div class="line">            System.out.println(ex.getMessage());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onSuccess(Integer result) &#123;</div><div class="line">            System.out.println(result);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        ListenableTask listenableTask = new ListenableTask();</div><div class="line">        ListenableFuture&lt;Integer&gt; listenableFuture = </div><div class="line">            listenableTask.compute(10);</div><div class="line">        listenableFuture.addCallback(new CallBackImpl());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>ThreadFactory 定义了创建线程的工厂方法，可以扩展该方法实现对Thread 的改造。</li>
+</ul>
+<h3 id="基于Java-Config"><a href="#基于Java-Config" class="headerlink" title="基于Java Config"></a>基于Java Config</h3><ul>
+<li><p><strong>基于注解</strong> 当采用基于Java Config 注解配置时，只需要在主配置添加@EnableAsync 注解，Spring 会自动的创建基于ThreadPoolTaskExecutor 实例注入到上下文中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">@EnableAsync</div><div class="line">public class AppConfig &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>基于AsyncConfigurer接口自定义</strong> 开发者可以自定义Executor 的类型，并且注册异常处理器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">public class TaskConfig implements AsyncConfigurer &#123;</div><div class="line">    @Override</div><div class="line">    public Executor getAsyncExecutor() &#123;</div><div class="line">        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();</div><div class="line">        executor.setMaxPoolSize(100);</div><div class="line">        executor.setCorePoolSize(10);</div><div class="line">        return executor;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() &#123;</div><div class="line">        return new AsyncUncaughtExceptionHandler() &#123;</div><div class="line">            @Override</div><div class="line">            public void handleUncaughtException(Throwable ex, </div><div class="line">                                                Method method, Object... params) &#123;</div><div class="line">                System.out.println(ex.getMessage());</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="基于XML-Config"><a href="#基于XML-Config" class="headerlink" title="基于XML Config"></a>基于XML Config</h3><ul>
+<li><p><strong>基于传统XML的配置</strong> 基于XML 的形式，采用传统的Java Bean的形式配置ThreadPoolTaskExecutor。然后采用自动注入(autowire, resource,name)的可以直接在Spring Component 中注入Executor。以编程的形式实现异步任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;taskExecutor&quot; class=&quot;org.springframework.scheduling.concurrent.</div><div class="line">    ThreadPoolTaskExecutor&quot;&gt;</div><div class="line">    &lt;property name=&quot;corePoolSize&quot; value=&quot;5&quot; /&gt;</div><div class="line">    &lt;property name=&quot;maxPoolSize&quot; value=&quot;10&quot; /&gt;</div><div class="line">    &lt;property name=&quot;queueCapacity&quot; value=&quot;25&quot; /&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>基于task 命名空间的配置</strong> Spring 为任务的执行提供了便利的task 命名空间。当采用基于XML 配置时Spring 会自动地为开发者创建Executor。同时可以在annotation-driven 标签上注册实现了AsyncUncaughtExceptionHandler 接口的异常处理器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!-- config exception handler  --&gt;</div><div class="line">&lt;bean id=&quot;taskAsyncExceptionHandler&quot; class=&quot;org.zzy.spring4.application.schedulie.TaskAsyncExceptionHandler&quot;/&gt;</div><div class="line">&lt;task:annotation-driven exception-handler=&quot;taskAsyncExceptionHandler&quot; scheduler=&quot;scheduler&quot; executor=&quot;executor&quot;/&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="异步执行的异常处理"><a href="#异步执行的异常处理" class="headerlink" title="异步执行的异常处理"></a>异步执行的异常处理</h3><p>除了上文提到的两种异常处理方式，Spring 还提供了基于SimpleApplicationEventMulticaster 类的异常处理方式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@Bean</div><div class="line">public SimpleApplicationEventMulticaster eventMulticaster(TaskExecutor taskExecutor) &#123;</div><div class="line">    SimpleApplicationEventMulticaster eventMulticaster = new SimpleApplicationEventMulticaster();</div><div class="line">    eventMulticaster.setTaskExecutor(taskExecutor);</div><div class="line">    eventMulticaster.setErrorHandler(new ErrorHandler() &#123;</div><div class="line">        @Override</div><div class="line">        public void handleError(Throwable t) &#123;</div><div class="line">            System.out.println(t.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    return eventMulticaster;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Spring-4-x-中任务调度实现"><a href="#Spring-4-x-中任务调度实现" class="headerlink" title="Spring 4.x 中任务调度实现"></a>Spring 4.x 中任务调度实现</h2><p>Spring 的任务调度主要基于<strong>TaskScheduler</strong> 接口。<strong>ThreadPoolTaskScheduler</strong> 是Spring 任务调度的核心实现类。该类提供了大量的重载方法进行任务调度。<strong>Trigger</strong> 定义了任务被执行的触发条件。Spring 提供了基于<a href="https://en.wikipedia.org/wiki/Cron" target="_blank" rel="external">Corn</a> 表达式的CornTrigger实现。TaskScheduler 如下图所示。<br><img src="/css/images/spring/taskscheduler.png" alt="ThreadPoolTaskExecutor 类"></p>
+<p>实现<strong>TaskScheduler</strong> 接口的ThreadPoolTaskExecutor 继承关系。<br><img src="/css/images/spring/ThreadPoolTaskExecutor.png" alt="ThreadPoolTaskExecutor 类"></p>
+<h3 id="基于Java-Config-1"><a href="#基于Java-Config-1" class="headerlink" title="基于Java Config"></a>基于Java Config</h3><ul>
+<li><p><strong>基于注解的配置</strong> 当采用基于Java Config 注解配置时，只需要在主配置添加@EnableScheduling 注解，Spring 会自动的创建基于ThreadPoolTaskExecutor 实例注入到上下文中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">@EnableScheduling</div><div class="line">public class AppConfig &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>基于SchedulingConfigurer接口自定义</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@Configuration</div><div class="line">public class ScheduleConfig implements SchedulingConfigurer &#123;</div><div class="line">    @Override</div><div class="line">    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) &#123;</div><div class="line">        taskRegistrar.setTaskScheduler(new ThreadPoolTaskScheduler());</div><div class="line">        taskRegistrar.getScheduler().schedule(new Runnable() &#123;</div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                System.out.println(&quot;hello&quot;);</div><div class="line">            &#125;</div><div class="line">        &#125;, new CronTrigger(&quot;0 15 9-17 * * MON-FRI&quot;));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="基于XML-Config-1"><a href="#基于XML-Config-1" class="headerlink" title="基于XML Config"></a>基于XML Config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;task:annotation-driven scheduler=&quot;myScheduler&quot;/&gt;</div><div class="line">&lt;task:scheduler id=&quot;myScheduler&quot; pool-size=&quot;10&quot;/&gt;</div></pre></td></tr></table></figure>
+<h3 id="Scheduled-注解的使用"><a href="#Scheduled-注解的使用" class="headerlink" title="@Scheduled 注解的使用"></a>@Scheduled 注解的使用</h3><p>当某个Bean 由Spring 管理生命周期时，就可以方便的使用@Shcheduled 注解将该Bean 的方法准换为基于任务调度的策略。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Scheduled(initialDelay=1000, fixedRate=5000)</div><div class="line">public void doSomething() &#123;</div><div class="line">    // something that should execute periodically</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Scheduled(cron=&quot;*/5 * * * * MON-FRI&quot;)</div><div class="line">public void doSomething() &#123;</div><div class="line">    // something that should execute on weekdays only</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="task-命名空间中的task-scheduled-tasks"><a href="#task-命名空间中的task-scheduled-tasks" class="headerlink" title="task 命名空间中的task:scheduled-tasks"></a>task 命名空间中的task:scheduled-tasks</h2><p>该元素能够实现快速地将一个普通Bean 的方法转换为Scheduled 任务的途径。具体如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;task:scheduled-tasks scheduler=&quot;myScheduler&quot;&gt;</div><div class="line">    &lt;task:scheduled ref=&quot;beanA&quot; method=&quot;methodA&quot; fixed-delay=&quot;5000&quot; initial-delay=&quot;1000&quot;/&gt;</div><div class="line">    &lt;task:scheduled ref=&quot;beanB&quot; method=&quot;methodB&quot; fixed-rate=&quot;5000&quot;/&gt;</div><div class="line">    &lt;task:scheduled ref=&quot;beanC&quot; method=&quot;methodC&quot; cron=&quot;*/5 * * * * MON-FRI&quot;/&gt;</div><div class="line">&lt;/task:scheduled-tasks&gt;</div><div class="line">&lt;task:scheduler id=&quot;myScheduler&quot; pool-size=&quot;10&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文着重介绍了JDK 为任务调度提供的基础类Timer。并在此基础上详细介绍了Spring 4.x ,的异步执行和任务调度的底层接口设计。并针对常用的模式进行了讲解，并附带了源代码。第三方开源的Quartz 实现了更为强大的任务调度系统，Spring 也对集成Quartz 提供了转换。之后会择机再详细的介绍Quartz 的应用和设计原理。同时，Servlet 3.x 为Web 的异步调用提供了AsyncContext，对基于Web 的异步调用提供了原生的支持，后续的文章也会对此有相应的介绍。</p>
+<h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><ol>
+<li><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#scheduling" target="_blank" rel="external">Spring Doc Task and Schedule</a></li>
+<li><a href="www.quartz-scheduler.org">Quartz</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Cron" target="_blank" rel="external">Corn Wiki</a></li>
+<li><a href="https://docs.oracle.com/javaee/7/api/javax/servlet/AsyncContext.html" target="_blank" rel="external">Servlet AsyncContext</a></li>
+</ol>
+<hr>
+<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/09/30/spring-task-and-schedule-deep-research/">https://zhangzhaoyu.github.io/2016/09/30/spring-task-and-schedule-deep-research/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;在很多业务场景中，系统都需要用到任务调度系统。例如定期地清理Redis 缓存，周期性地检索某一条件并更新系统的资源等。在现代的应用系统中，快速地响应用户的请求，是用户体验最主要的因素之一。因此在Web 系统中异步地执行任务，也会在很多场景中经常涉及到。本文对任务调度和异步执行的Java 实现进行了总结，主要讲述一下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Java 对异步执行和任务调度的支持&lt;/li&gt;
+&lt;li&gt;Spring 4.X 的异步执行和任务调度实现&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Spring 4.x" scheme="https://zhangzhaoyu.github.io/categories/Spring-4-x/"/>
+    
+    
+      <category term="Schedule" scheme="https://zhangzhaoyu.github.io/tags/Schedule/"/>
+    
+      <category term="Task" scheme="https://zhangzhaoyu.github.io/tags/Task/"/>
+    
+  </entry>
+  
+  <entry>
     <title>流浪者和罂粟花</title>
     <link href="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/"/>
     <id>https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/</id>
     <published>2016-09-27T15:00:00.000Z</published>
-    <updated>2016-09-28T06:08:17.646Z</updated>
+    <updated>2016-09-30T12:10:04.582Z</updated>
     
     <content type="html"><![CDATA[<p>天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。</p>
 <p>渐渐地，世界暗下来了。</p>
@@ -85,7 +178,7 @@
     <link href="https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/"/>
     <id>https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/</id>
     <published>2015-05-03T04:12:12.000Z</published>
-    <updated>2016-09-28T02:35:30.850Z</updated>
+    <updated>2016-09-30T12:10:04.570Z</updated>
     
     <content type="html"><![CDATA[<p>飄泊的那朵雲</p>
 <p>心里藏着珠兒</p>
