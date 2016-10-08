@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://zhangzhaoyu.github.io/2016/10/08/introduction-of-singleton-design-pattern/</loc>
+    <lastmod>2016-10-08T06:53:22.689Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式寻根究底 - 单例模式（Singleton）</title>
+        <pubTime>2016-10-08T04:22:45.000Z</pubTime>
+        
+        <tag>Singleton</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://zhangzhaoyu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zhangzhaoyu.github.io/2016/09/30/spring-task-and-schedule-deep-research/</loc>
     <lastmod>2016-10-08T06:47:16.142Z</lastmod>
     <data>
@@ -19,26 +39,6 @@
            
              
               <breadCrumb title="Spring 4.x" url="https://zhangzhaoyu.github.io/categories/Spring-4-x/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://zhangzhaoyu.github.io/2016/10/08/introduction-of-singleton-design-pattern/</loc>
-    <lastmod>2016-10-08T06:45:50.898Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式寻根究底 - 单例模式（Singleton）</title>
-        <pubTime>2016-10-08T04:22:45.000Z</pubTime>
-        
-        <tag>Singleton</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="https://zhangzhaoyu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
           
         </display>
     </data>
