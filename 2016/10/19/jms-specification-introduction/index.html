@@ -3,37 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>雲中的故事 | TRAMP 的博客</title>
+    <title>JMS 寻根究低 - JMS(Java Message Service)规范概述 | TRAMP 的博客</title>
     <meta name="google-site-verification" content="gpo3ea0rGprpET5g_RxvV2aCck9ML7LgjKUPPrGb8OA" />
     <meta name="baidu-site-verification" content="vQbbxwcRRY" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="飄泊的那朵雲
-心里藏着珠兒
-一滴是姑娘的淚
-一滴是男子的血
-淚珠說：我是姑娘溫婉憂傷的情
-血珠說：我是男子堅毅孤獨的心">
+    <meta name="description" content="JMS 概述JMS1.1（Java Message Service）是Java 推出的访问已存在的消息产品的一种标准规范，也被称为消息中间件。 JMS 为Java 语言的客户端和Java 语言的中间曾服务使用这些消息系统提供了一种通用的方法。它主要是定义了消息语义，以及一组与之对应的Java 接口。JMS的规范包容了对Java 编程语言之外的其他语言的支持。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="雲中的故事">
-<meta property="og:url" content="https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/index.html">
+<meta property="og:title" content="JMS 寻根究低 - JMS(Java Message Service)规范概述">
+<meta property="og:url" content="https://zhangzhaoyu.github.io/2016/10/19/jms-specification-introduction/index.html">
 <meta property="og:site_name" content="TRAMP 的博客">
-<meta property="og:description" content="飄泊的那朵雲
-心里藏着珠兒
-一滴是姑娘的淚
-一滴是男子的血
-淚珠說：我是姑娘溫婉憂傷的情
-血珠說：我是男子堅毅孤獨的心">
-<meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/thumb/cloud.png">
-<meta property="og:updated_time" content="2016-09-30T12:10:04.570Z">
+<meta property="og:description" content="JMS 概述JMS1.1（Java Message Service）是Java 推出的访问已存在的消息产品的一种标准规范，也被称为消息中间件。 JMS 为Java 语言的客户端和Java 语言的中间曾服务使用这些消息系统提供了一种通用的方法。它主要是定义了消息语义，以及一组与之对应的Java 接口。JMS的规范包容了对Java 编程语言之外的其他语言的支持。">
+<meta property="og:image" content="https://zhangzhaoyu.github.io/ptp.png">
+<meta property="og:image" content="https://zhangzhaoyu.github.io/pubsub.png">
+<meta property="og:updated_time" content="2016-10-21T04:27:00.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="雲中的故事">
-<meta name="twitter:description" content="飄泊的那朵雲
-心里藏着珠兒
-一滴是姑娘的淚
-一滴是男子的血
-淚珠說：我是姑娘溫婉憂傷的情
-血珠說：我是男子堅毅孤獨的心">
-<meta name="twitter:image" content="https://zhangzhaoyu.github.io/css/images/thumb/cloud.png">
+<meta name="twitter:title" content="JMS 寻根究低 - JMS(Java Message Service)规范概述">
+<meta name="twitter:description" content="JMS 概述JMS1.1（Java Message Service）是Java 推出的访问已存在的消息产品的一种标准规范，也被称为消息中间件。 JMS 为Java 语言的客户端和Java 语言的中间曾服务使用这些消息系统提供了一种通用的方法。它主要是定义了消息语义，以及一组与之对应的Java 接口。JMS的规范包容了对Java 编程语言之外的其他语言的支持。">
+<meta name="twitter:image" content="https://zhangzhaoyu.github.io/ptp.png">
     
 
     
@@ -224,7 +210,7 @@ var _hmt = _hmt || [];
 </aside>
 
             
-            <section id="main"><article id="post-story-of-the-cloud" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-jms-specification-introduction" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -232,7 +218,7 @@ var _hmt = _hmt || [];
                 
     
         <h1 class="article-title" itemprop="name">
-            雲中的故事
+            JMS 寻根究低 - JMS(Java Message Service)规范概述
         </h1>
     
 
@@ -241,22 +227,17 @@ var _hmt = _hmt || [];
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2015/05/03/story-of-the-cloud/">
-            <time datetime="2015-05-03T04:12:12.000Z" itemprop="datePublished">2015-05-03</time>
+        <a href="/2016/10/19/jms-specification-introduction/">
+            <time datetime="2016-10-19T06:55:02.000Z" itemprop="datePublished">2016-10-19</time>
         </a>
     </div>
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/diary/">diary</a>
-    </div>
-
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/story/">story</a>
+        <a class="tag-link" href="/tags/ActiveMQ/">ActiveMQ</a>
     </div>
 
                     </div>
@@ -267,27 +248,82 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>飄泊的那朵雲</p>
-<p>心里藏着珠兒</p>
-<p>一滴是姑娘的淚</p>
-<p>一滴是男子的血</p>
-<p>淚珠說：我是姑娘溫婉憂傷的情</p>
-<p>血珠說：我是男子堅毅孤獨的心</p>
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JMS-概述"><span class="toc-number">1.</span> <span class="toc-text">JMS 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JMS-的两种类型"><span class="toc-number">2.</span> <span class="toc-text">JMS 的两种类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#点对点（P2P）"><span class="toc-number">2.1.</span> <span class="toc-text">点对点（P2P）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布-订阅（Pub-Sub）"><span class="toc-number">2.2.</span> <span class="toc-text">发布/订阅（Pub/Sub）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JMS-消息"><span class="toc-number">3.</span> <span class="toc-text">JMS 消息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#消息字段头"><span class="toc-number">3.1.</span> <span class="toc-text">消息字段头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息属性"><span class="toc-number">3.2.</span> <span class="toc-text">消息属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息体的格式"><span class="toc-number">3.3.</span> <span class="toc-text">消息体的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息的确认"><span class="toc-number">3.4.</span> <span class="toc-text">消息的确认</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#受管对象"><span class="toc-number">3.5.</span> <span class="toc-text">受管对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用对象"><span class="toc-number">3.6.</span> <span class="toc-text">常用对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考引用"><span class="toc-number">4.</span> <span class="toc-text">参考引用</span></a></li></ol>
+                </div>
+            
+            <h1 id="JMS-概述"><a href="#JMS-概述" class="headerlink" title="JMS 概述"></a>JMS 概述</h1><p>JMS1.1（Java Message Service）是Java 推出的访问已存在的消息产品的一种标准规范，也被称为消息中间件。 JMS 为Java 语言的客户端和Java 语言的中间曾服务使用这些消息系统提供了一种通用的方法。它主要是定义了消息语义，以及一组与之对应的Java 接口。JMS的规范包容了对Java 编程语言之外的其他语言的支持。</p>
 <a id="more"></a>
-<p>驚雷一声</p>
-<p>淚珠說：我怕</p>
-<p>血珠說：你抱着我</p>
-<p>她溶進他的心</p>
-<p>他感覺自己的心變得好重好重</p>
-<p>隨著風蕩</p>
-<p>落在山中古寺的一片瓦上</p>
-<p>朝日初升</p>
-<p>寺中梵音唱起</p>
-<p>那滴小雨</p>
-<p>對着日和着梵音在瓦上</p>
-<p>微笑着再見</p>
+<h1 id="JMS-的两种类型"><a href="#JMS-的两种类型" class="headerlink" title="JMS 的两种类型"></a>JMS 的两种类型</h1><h2 id="点对点（P2P）"><a href="#点对点（P2P）" class="headerlink" title="点对点（P2P）"></a>点对点（P2P）</h2><p>点对点系统与消息队列一起工作的。大多数队列由管理员创建，并被客户端看做是静态资源。<br><img src="ptp.png" alt="点对点结构图"></p>
+<h2 id="发布-订阅（Pub-Sub）"><a href="#发布-订阅（Pub-Sub）" class="headerlink" title="发布/订阅（Pub/Sub）"></a>发布/订阅（Pub/Sub）</h2><p>JMS Pub/Sub 模型定义了客户端如何发布消息到给予内容层次的众所周知的节点和如何从节点订阅消息。<br><img src="pubsub.png" alt="发布/订阅结构图"></p>
+<h1 id="JMS-消息"><a href="#JMS-消息" class="headerlink" title="JMS 消息"></a>JMS 消息</h1><p>消息（Message）在JMS 中被用来描述企业应用间的异步通信。包括异步请求、响应或事件，它们是被企业应用消费的。JMS 消息有以下基本分组成：</p>
+<ul>
+<li>消息头 所有的消息都值相同的头字段集。头字段办函了客户端和提供商都要使用的用于标识和路由消息的值。</li>
+<li>属性 除了标准的头字段外，消息提供了一个内置的功能来向消息增加可选的头字段。<ul>
+<li>应用专有属性 为消息增加应用专有的头字段提供的机制。</li>
+<li>标准属性 JMS 定义的一些标准属性，他们相当于可选的头字段。</li>
+<li>提供上专有属性 提供商专有的属性。</li>
+</ul>
+</li>
+<li>消息体 JMS 定义了几个消息体类型。这些类型覆盖了大部分当前使用的消息风格。</li>
+</ul>
+<h2 id="消息字段头"><a href="#消息字段头" class="headerlink" title="消息字段头"></a>消息字段头</h2><ul>
+<li>JMSDestination 包含了消息被发往的目的地。创建消息时可以设置JMSDestination，但是消息发送完毕时，会被更新为发送方指定的JMSDetination。</li>
+<li>JMSDeliveryMode 包含了消息发送时指定的转发模式。<ul>
+<li>NON_PERSISTENT 最多一次的。消息会因JMS Provider 的停止而丢失。</li>
+<li>PERSISTENT 有且只有一次。JMS Provider 服务停止重启后不会丢失。</li>
+</ul>
+</li>
+<li>JMSMessageID 包含了一个用于唯一标识由JMS provider发送的每个消息。</li>
+<li>JMSTimestamp 包含了消息被发送的时间。但不是消息被真正转发的时间。</li>
+<li>JMSCorrelation 客户端可以使用JMSCorrelationID 来链接消息，典型的用法就是将响应消息和请求消息连接起来。</li>
+<li>JMSReplyTo 消息被发送时包含一个由客户端支持的目的地。它是回复消息应当被发送的目的地。</li>
+<li>JMSRedelivered 当消费者收到带有 JMSRedelivered 的消息头时，表明该消息在过去传输过但没有被确认。JMS Provider 必须对该字段进行设置，当为 true 时即告知消费者该消息是重传的，消费者需要自行处理重复的消息。</li>
+<li>JMSType 包含了由客户端在发送消息时指定的消息类型标识。</li>
+<li>JMSExpiration 消息的过期时间，其值为当前时间加上存活时间（毫秒）；当存活时间设置为 0 时，该字段的值也被设置为 0 ，表示永不过期。</li>
+<li>JMSPriority 包含了消息的优先级。消息的优先级， 0 代表最低优先级， 9 代表最高优先级；一般 0~4 为普通优先级， 5~9 为加快优先级。</li>
+</ul>
+<h2 id="消息属性"><a href="#消息属性" class="headerlink" title="消息属性"></a>消息属性</h2><p>Message 除了定义的头字段外，还有一个内置的功能，就是支持为该消息添加可选头字段。例如<em>setObjectProperty()</em> 等方法。</p>
+<h2 id="消息体的格式"><a href="#消息体的格式" class="headerlink" title="消息体的格式"></a>消息体的格式</h2><ul>
+<li><code>SteamMessage</code> 消息体包含的是Java 的原始流，它连续的填充和读。</li>
+<li><code>MapMessage</code> 消息体包含一系列的键值对。键值的顺序没有定义。</li>
+<li><code>TextMessage</code> 消息体包含的是java.lang.String。</li>
+<li><code>ObjectMessage</code> 消息体包含了可序列化的Java 对象。也可以是对象集合。</li>
+<li><code>BytesMessage</code> 消息包含一个未解释的字节流。</li>
+</ul>
+<h2 id="消息的确认"><a href="#消息的确认" class="headerlink" title="消息的确认"></a>消息的确认</h2><p>如果会话是事务性的，那么消息确认自动由commit 处理，切恢复由rollcack 处理。非事物的方式如下：</p>
+<ul>
+<li><code>DUPS_OK_ACKNOWLEDGE</code> 该选项称为懒惰的消息传递。该选项只用于可以忍受重复消息的消费者。</li>
+<li><code>AUTO_ACKNOWLEDGE</code> 当消息被成功地从调用接收返回或MessageListener 成功返回时，会话自动确认刻画段的消息接收。</li>
+<li><code>CLIENT_ACKNOWLEDGE</code> 客户端通过调用消息的acknowledge 方法来确认消息。确认一个被消费的消息会自动确认被该会话转发的所有消息。</li>
+</ul>
+<h2 id="受管对象"><a href="#受管对象" class="headerlink" title="受管对象"></a>受管对象</h2><p>JMS 的受管对象是那些包含了JMS 配置信息的对象。这些配置信息通常由管理员配置然后由客户端使用。JMS 的受管对象可以通过JNDI 查找。</p>
+<ul>
+<li>Destination 包含了除地址外的提供商特有的配置信息且它支持并发使用。代表了一个打开的TCP/IP Scoket 连接。<ul>
+<li>它再授权发生的地方创建</li>
+<li>它能定义一个独一无二的ClientID</li>
+<li>它能够创建Session</li>
+<li>它提供连接的元信息，ConnectionMetaData</li>
+<li>它支持一个可选的ExceptionListener</li>
+</ul>
+</li>
+<li>ConnectionFactory 封装了一系列的提供商的连接配置参数，Client 使用它来创建与JMS Provider 的连接。同时，其支持并发。</li>
+</ul>
+<h2 id="常用对象"><a href="#常用对象" class="headerlink" title="常用对象"></a>常用对象</h2><ul>
+<li>Connection 表示客户端和JMS 系统之间的连接。Connection 可以产生一个或多个Session。</li>
+<li>Session 通过session 创建生产者、消费者和消息等。Session 也提供了事务的功能。</li>
+<li>TemporaryQueue和TemporaryTopic 临时目的地通常用作JMSReplayTo 的目的地。</li>
+<li>QueueBrower 用来查看队列中的消息，但不删除它们。</li>
+<li>QueueRequestor 来简化服务请求，提供一个request 方法来发送请求信息和等待回复。</li>
+<li>MessageListener 异步的模式，消息的监听者。一旦注册，消息到达时，就会通知。</li>
+<li>ExceptionListener 处理连接的异常信息的地方。</li>
+</ul>
+<h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><ol>
+<li><a href="https://jcp.org/en/jsr/detail?id=914" target="_blank" rel="external">JMS 1.1 规范</a></li>
+</ol>
 <hr>
-<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/">https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/</a></p>
+<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/10/19/jms-specification-introduction/">https://zhangzhaoyu.github.io/2016/10/19/jms-specification-introduction/</a></p>
 
         
         </div>
@@ -351,7 +387,7 @@ var _hmt = _hmt || [];
 
             
     
-        <a href="https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/#comments" class="article-comment-link ds-thread-count" data-thread-key="2015/05/03/story-of-the-cloud/">评论</a>
+        <a href="https://zhangzhaoyu.github.io/2016/10/19/jms-specification-introduction/#comments" class="article-comment-link ds-thread-count" data-thread-key="2016/10/19/jms-specification-introduction/">评论</a>
     
 
         </footer>
@@ -360,15 +396,11 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/09/27/tramp-and-poppy-flower/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    流浪者和罂粟花
-                
-            </div>
-        </a>
     
+        <a href="/2016/10/08/introduction-of-singleton-design-pattern/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">设计模式寻根究底 - 单例模式（Singleton Pattern）</div>
+        </a>
     
 </nav>
 
@@ -489,7 +521,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread " data-thread-key="2015/05/03/story-of-the-cloud/" data-title="雲中的故事" data-url="https://zhangzhaoyu.github.io/2015/05/03/story-of-the-cloud/"></div>
+    <div class="ds-thread " data-thread-key="2016/10/19/jms-specification-introduction/" data-title="JMS 寻根究低 - JMS(Java Message Service)规范概述" data-url="https://zhangzhaoyu.github.io/2016/10/19/jms-specification-introduction/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
