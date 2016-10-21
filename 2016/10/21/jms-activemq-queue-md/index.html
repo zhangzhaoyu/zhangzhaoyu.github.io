@@ -3,28 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>流浪者和罂粟花 | TRAMP 的博客</title>
+    <title>ActiveMQ 寻根究低 - 点对点模式详解 | TRAMP 的博客</title>
     <meta name="google-site-verification" content="gpo3ea0rGprpET5g_RxvV2aCck9ML7LgjKUPPrGb8OA" />
     <meta name="baidu-site-verification" content="vQbbxwcRRY" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。
-渐渐地，世界暗下来了。
-月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。">
+    <meta name="description" content="概述本文在ActiveMQ 寻根究低 - JMS 规范概述一问的基础上，探究点对点模式的具体变成实现方案，以及点对点模式在实际应用的的具体场景。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="流浪者和罂粟花">
-<meta property="og:url" content="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/index.html">
+<meta property="og:title" content="ActiveMQ 寻根究低 - 点对点模式详解">
+<meta property="og:url" content="https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/index.html">
 <meta property="og:site_name" content="TRAMP 的博客">
-<meta property="og:description" content="天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。
-渐渐地，世界暗下来了。
-月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。">
-<meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/thumb/yingsuhua.png">
-<meta property="og:updated_time" content="2016-09-30T12:10:04.582Z">
+<meta property="og:description" content="概述本文在ActiveMQ 寻根究低 - JMS 规范概述一问的基础上，探究点对点模式的具体变成实现方案，以及点对点模式在实际应用的的具体场景。">
+<meta property="og:image" content="https://zhangzhaoyu.github.io/jmsmodel.png">
+<meta property="og:updated_time" content="2016-10-21T07:55:04.307Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="流浪者和罂粟花">
-<meta name="twitter:description" content="天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。
-渐渐地，世界暗下来了。
-月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。">
-<meta name="twitter:image" content="https://zhangzhaoyu.github.io/css/images/thumb/yingsuhua.png">
+<meta name="twitter:title" content="ActiveMQ 寻根究低 - 点对点模式详解">
+<meta name="twitter:description" content="概述本文在ActiveMQ 寻根究低 - JMS 规范概述一问的基础上，探究点对点模式的具体变成实现方案，以及点对点模式在实际应用的的具体场景。">
+<meta name="twitter:image" content="https://zhangzhaoyu.github.io/jmsmodel.png">
     
 
     
@@ -215,7 +209,7 @@ var _hmt = _hmt || [];
 </aside>
 
             
-            <section id="main"><article id="post-tramp-and-poppy-flower" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-jms-activemq-queue-md" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -223,7 +217,7 @@ var _hmt = _hmt || [];
                 
     
         <h1 class="article-title" itemprop="name">
-            流浪者和罂粟花
+            ActiveMQ 寻根究低 - 点对点模式详解
         </h1>
     
 
@@ -232,8 +226,8 @@ var _hmt = _hmt || [];
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/09/27/tramp-and-poppy-flower/">
-            <time datetime="2016-09-27T15:00:00.000Z" itemprop="datePublished">2016-09-27</time>
+        <a href="/2016/10/21/jms-activemq-queue-md/">
+            <time datetime="2016-10-21T06:52:32.000Z" itemprop="datePublished">2016-10-21</time>
         </a>
     </div>
 
@@ -241,13 +235,13 @@ var _hmt = _hmt || [];
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/diary/">diary</a>
+        <a class="article-category-link" href="/categories/ActiveMQ/">ActiveMQ</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/story/">story</a>
+        <a class="tag-link" href="/tags/ActiveMQ/">ActiveMQ</a>
     </div>
 
                     </div>
@@ -258,47 +252,26 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。</p>
-<p>渐渐地，世界暗下来了。</p>
-<p>月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。<br><a id="more"></a><br>有一条小路在这轮孤月下面延伸，奔跑，不知道最终要去向的是哪个地方。小路旁边的有一盏灯火在暮色中亮起来。</p>
-<p>透过那微弱的灯光，在窗户里面的一个圆桌子旁边围坐一家人，有个神情坚毅里透着憔悴的男人，有个体态瘦削却流露着母爱的女人，有个鼻子里流着鼻涕的小男孩正津津有味的吃着不知道是什么的东西。在小男孩的旁边有一只小狗欢快的摇着尾巴，看着小主人津津有味的吃着的东西，眼睛里有着自己绝对忠诚的小主人。</p>
-<p>在这个有着一盏灯的小房子的后面，是一望无际的有着黄色土壤的田地。黑色的风绕过高山，掠过树梢，吹向了这片土地。</p>
-<p>哗哗… 阵阵植物叶子簌簌地摩擦的声音，彼此起伏，蔓延开来。风掀起的黑色的叶子，呼啸着奔向对面的那片漆黑之中。</p>
-<p>月亮渐渐地完全地被纯黑色的巨大黑幕所吞噬。</p>
-<p>黑暗在世界任何一个角落里开着狂欢的派对。吸食着人们内心里最后的那么一点对于理想，自由，爱的追求。</p>
-<p>恐慌，恐慌，满世界的恐慌。</p>
-<p>黑暗，黑暗，满世界的黑暗。</p>
-<p>在那个小屋子里的角落里，一个小男孩抱着一只懒洋洋的小狗甜甜地静静地在安睡。</p>
-<p>那是一个美妙的梦，屋后面的那一望无际的植物终于开花了，在小男孩的爸爸妈妈付出了极其艰辛的劳动和汗水之后终于开花了。因为小男孩知道当这些个植物的开花的时候，肯定就是爸爸妈妈展开笑颜的时候了。</p>
-<p>曾经很多个夜晚，小男孩对着夜空发呆，希望寻着一颗能够实现他愿望的星星。</p>
-<p>在这个梦里，小男孩终于可以在花海奔跑，呵呵的笑声伴着小狗的汪汪叫声，在这片土地里延伸。</p>
-<p>一群穿着黑色制服的人顺着那条小路向着这个黑暗里唯一的存在着微弱亮光的地方走来。</p>
-<p>树影斑驳，人影可怖。</p>
-<p>咚咚…</p>
-<p>圆桌旁边男人，内心一惊，随后握紧了拳头。重重地压在桌子。旁边的妻子轻轻地把手放在男人的肩上。</p>
-<p>“不要惊醒我的孩子，我们跟你们走！”。</p>
-<p>吱吱…</p>
-<p>门关上了。</p>
-<p>四条人影在那条小道上前行，鞋子跟地面沙子摩擦的声音不时的响起，最后，最后，消失在远处的黑暗之中。</p>
-<p>身后的那所小房子里，灯光依旧是那样地微弱。</p>
-<p>只是，只是一个小男孩还有一个小狗依然静静地甜甜地睡着。</p>
-<p>一夜的黑暗在太阳跳过对面山头的时候消失的无影无踪。</p>
-<p>小男孩高兴地奔跑着去平时爸爸妈妈早上起来会去劳作的那片田地里，去告诉他们自己昨天做了一个美丽的梦。</p>
-<p>时间渐渐过去了，小男孩有些心慌了，还不见爸爸妈妈。小狗在身后也嗷嗷地叫着，表示着不安。</p>
-<p>小男孩疯狂地迈着小脚步在那片田地里穿梭。一朵朵美丽的花朵在他的眼前招摇，挡住了他寻找爸爸妈妈的视线。同时也淹没了小男孩小小身体。</p>
-<p>黑夜渐渐地如梦魇般来到了。</p>
-<p>在昨夜的那个小屋子里，再也没有了灯光。</p>
-<p>哪怕是微弱的。</p>
-<p>只是在那条路上站着一个小小男孩和一只小小狗。</p>
-<p>在那条路上，小男孩决定去流浪，他没有眼泪，他不知掉为什么要流眼泪，为谁而流。小男孩反过身子，指着小狗，又指了一下与自己相对的另外与一个方向，狗狗很听话的把自己的头掉到了那个方向。</p>
-<p>从此，便开始了两个生命体的流浪之旅。</p>
-<p>两个身影消失在了夜色之中，只剩下那个小屋和午后的那片天地和田地里一望无际正开着花的植物。</p>
-<p>匆匆的，时间流逝。那一个夜晚，那几个人物和故事，也归入到历史的洪流里，渐渐地渺小渺小，渺小到貌似不曾存在过。</p>
-<p>一晃十几年过去了，过去了就是过去了。</p>
-<p>后来的后来，有人看到了在那片山脚下，在那个曾经的小屋的后面的那片一望无际的田地里，每当植物开花的时候总有一个人影和一只狗游荡在那儿周围。他们的身影时隐实现在那一片罂粟花的海洋里。他们捍卫着在罂粟开花期的每一朵花，他们抵御了在罂粟花最美丽季节任何一个企图采摘哪怕一朵的破坏者。</p>
-<p>一人一狗一片罂粟花。</p>
+            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本文在<a href="2016/10/19/jms-specification-introduction/">ActiveMQ 寻根究低 - JMS 规范概述</a>一问的基础上，探究点对点模式的具体变成实现方案，以及点对点模式在实际应用的的具体场景。<br><a id="more"></a></p>
+<h1 id="JMS-程序设计模式"><a href="#JMS-程序设计模式" class="headerlink" title="JMS 程序设计模式"></a>JMS 程序设计模式</h1><p>JMS 程序的模式主要是给予PTP 和 Pub/Sub 配置一些参数的不同来应用到不同的场景中。根据具体的业务对性能、对数据的安全性等再进行最终方案的选型。通用的结构如下图:<br><img src="jmsmodel.png" alt="JMS 程序设计的结构"></p>
+<h1 id="点对点-PTP-模式的实现"><a href="#点对点-PTP-模式的实现" class="headerlink" title="点对点(PTP)模式的实现"></a>点对点(PTP)模式的实现</h1><h2 id="PTP-模式生产者"><a href="#PTP-模式生产者" class="headerlink" title="PTP 模式生产者"></a>PTP 模式生产者</h2><h3 id="非事务方式的生产者"><a href="#非事务方式的生产者" class="headerlink" title="非事务方式的生产者"></a>非事务方式的生产者</h3><p>非事务的生产者需要将<code>connection.createSession(transacted, acknowledge)</code> 的第一个参数设置为<code>FALSE</code>。第二个参数指明的消息接受者的应答方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PTPSyncQueueProducer</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger LOG = LoggerFactory.getLogger(PTPSyncQueueProducer.class);</div><div class="line">    Connection connection;</div><div class="line">    Session session;</div><div class="line">    Destination destination;</div><div class="line">    MessageProducer messageProducer;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                connection = ConnectionUtils.getConnectionFactory().createConnection();</div><div class="line">                connection.start();</div><div class="line">                <span class="comment">// first param is transacted</span></div><div class="line">                session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);</div><div class="line">                destination = session.createQueue(<span class="string">"PTPSyncQueueProducer"</span>);</div><div class="line">                messageProducer = session.createProducer(destination);</div><div class="line">                ObjectMessage objectMessage = session.createObjectMessage();</div><div class="line">                objectMessage.setObject(<span class="keyword">new</span> Obj(++i, <span class="string">"littler Bai"</span>));</div><div class="line"></div><div class="line">                messageProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);</div><div class="line">                messageProducer.setPriority(Message.DEFAULT_PRIORITY);</div><div class="line">                messageProducer.setTimeToLive(Message.DEFAULT_TIME_TO_LIVE);</div><div class="line"></div><div class="line">                messageProducer.send(objectMessage);</div><div class="line">                LOG.info(<span class="string">"send &#123;&#125;"</span>, i);</div><div class="line">                TimeUnit.SECONDS.sleep(<span class="number">5</span>);</div><div class="line">            &#125; <span class="keyword">catch</span> (JMSException e) &#123;</div><div class="line">                ConnectionUtils.close(messageProducer, session, connection);</div><div class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="基于事务的生成者"><a href="#基于事务的生成者" class="headerlink" title="基于事务的生成者"></a>基于事务的生成者</h3><p>基于事务的生产者。只有再事务提交时，消息才已打包的方式一起发送到JMS Provider。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transactedProducer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            connection = ConnectionUtils.getConnectionFactory().createConnection();</div><div class="line">            connection.start();</div><div class="line">            <span class="comment">// first param is transacted,if true transaction</span></div><div class="line">            session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);</div><div class="line">            destination = session.createQueue(<span class="string">"PTPSyncQueueProducer"</span>);</div><div class="line">            messageProducer = session.createProducer(destination);</div><div class="line"></div><div class="line">            messageProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);</div><div class="line">            messageProducer.setPriority(Message.DEFAULT_PRIORITY);</div><div class="line">            messageProducer.setTimeToLive(Message.DEFAULT_TIME_TO_LIVE);</div><div class="line"></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">                ObjectMessage objectMessage = session.createObjectMessage();</div><div class="line">                objectMessage.setObject(<span class="keyword">new</span> Obj(i, <span class="string">"littler Bai"</span>));</div><div class="line">                messageProducer.send(objectMessage);</div><div class="line">                LOG.info(<span class="string">"send &#123;&#125;"</span>, i);</div><div class="line">            &#125;</div><div class="line">            System.out.println(<span class="string">"begin sleep"</span>);</div><div class="line">            TimeUnit.SECONDS.sleep(<span class="number">10</span>);</div><div class="line">            session.commit();</div><div class="line"></div><div class="line">        &#125; <span class="keyword">catch</span> (JMSException e) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                session.rollback();</div><div class="line">            &#125; <span class="keyword">catch</span> (JMSException ex) &#123;</div><div class="line">                ex.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            ConnectionUtils.close(messageProducer, session, connection);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="PTP-模式消费者"><a href="#PTP-模式消费者" class="headerlink" title="PTP 模式消费者"></a>PTP 模式消费者</h2><h3 id="基于阻塞的消费者"><a href="#基于阻塞的消费者" class="headerlink" title="基于阻塞的消费者"></a>基于阻塞的消费者</h3><p>基于阻塞的消费者采用<code>MessageConsumer.receive(timeout)</code> 方法来阻塞当前线程，循环获取监测的<code>Destination</code> 的消息。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PTPQueueCustomer</span> </span>&#123;</div><div class="line">    Connection connection;</div><div class="line">    Session session;</div><div class="line">    Destination destination;</div><div class="line">    MessageConsumer messageConsumer;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">consume</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            connection = ConnectionUtils.getConnectionFactory().createConnection();</div><div class="line">            connection.start();</div><div class="line">            session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);</div><div class="line">            destination = session.createQueue(<span class="string">"PTPSyncQueueProducer"</span>);</div><div class="line">            messageConsumer = session.createConsumer(destination);</div><div class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">                Message message = messageConsumer.receive(<span class="number">1000</span>);</div><div class="line">                <span class="keyword">if</span> (message <span class="keyword">instanceof</span> ObjectMessage) &#123;</div><div class="line">                    ObjectMessage objectMessage = (ObjectMessage) message;</div><div class="line">                    System.out.println(objectMessage.getObject());</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (JMSException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            ConnectionUtils.close(messageConsumer, session, connection);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">//new PTPQueueCustomer().consume();</span></div><div class="line">        <span class="keyword">new</span> PTPQueueCustomer().asyncConsume();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="基于MessageListener-的异步消费者"><a href="#基于MessageListener-的异步消费者" class="headerlink" title="基于MessageListener 的异步消费者"></a>基于MessageListener 的异步消费者</h3><p>基于<code>MessageListener</code> 的异步消费者需要实现该接口，并在<code>MessageConsumer.setMessageListener(listener)</code> 方法上注册。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueueMessageListener</span> <span class="keyword">implements</span> <span class="title">MessageListener</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(Message message)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (message <span class="keyword">instanceof</span> ObjectMessage) &#123;</div><div class="line">            ObjectMessage objectMessage = (ObjectMessage) message;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                System.out.println(objectMessage.getObject());</div><div class="line">            &#125; <span class="keyword">catch</span> (JMSException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">asyncConsume</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            connection = ConnectionUtils.getConnectionFactory().createConnection();</div><div class="line">            connection.start();</div><div class="line">            session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);</div><div class="line">            destination = session.createQueue(<span class="string">"PTPSyncQueueProducer"</span>);</div><div class="line">            messageConsumer = session.createConsumer(destination);</div><div class="line"></div><div class="line">            messageConsumer.setMessageListener(<span class="keyword">new</span> QueueMessageListener());</div><div class="line">        &#125; <span class="keyword">catch</span> (JMSException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虽然PTP 模式，规定了一个消息（<code>Message</code>）只能由一个消费者消费，但是并不意味着一个PTP 的<code>Destination</code> 只能连接一个消费者。因此，PTP 模式典型应用由：</p>
+<ul>
+<li>应用到将同一件事情分散到多个处理者。</li>
+<li>订单处理系统，如定时抢购，银行纪念币抢兑</li>
+<li>一对一系统间调用的解耦</li>
+<li>基于PTP 实现<code>request-response</code> 应答模式</li>
+</ul>
+<h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><ol>
+<li><a href="2016/10/19/jms-specification-introduction/">ActiveMQ 寻根究低 - JMS 规范概述</a></li>
+</ol>
 <hr>
-<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/">https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/</a></p>
+<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/">https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/</a></p>
 
         
         </div>
@@ -362,7 +335,7 @@ var _hmt = _hmt || [];
 
             
     
-        <a href="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/#comments" class="article-comment-link ds-thread-count" data-thread-key="2016/09/27/tramp-and-poppy-flower/">评论</a>
+        <a href="https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/#comments" class="article-comment-link ds-thread-count" data-thread-key="2016/10/21/jms-activemq-queue-md/">评论</a>
     
 
         </footer>
@@ -371,19 +344,10 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/09/30/spring-task-and-schedule-deep-research/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    Spring 寻根究底 - Spring 4.x Task 和 Schedule 概述
-                
-            </div>
-        </a>
     
-    
-        <a href="/2015/05/03/story-of-the-cloud/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/10/19/jms-specification-introduction/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">雲中的故事</div>
+            <div class="article-nav-title">ActiveMQ 寻根究低 - JMS 规范概述</div>
         </a>
     
 </nav>
@@ -505,7 +469,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread " data-thread-key="2016/09/27/tramp-and-poppy-flower/" data-title="流浪者和罂粟花" data-url="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/"></div>
+    <div class="ds-thread " data-thread-key="2016/10/21/jms-activemq-queue-md/" data-title="ActiveMQ 寻根究低 - 点对点模式详解" data-url="https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
