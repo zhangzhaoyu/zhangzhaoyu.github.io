@@ -3,28 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>流浪者和罂粟花 | TRAMP 的博客</title>
+    <title>寻根究底 - Spring Boot 日志概述(1) | TRAMP 的博客</title>
     <meta name="google-site-verification" content="gpo3ea0rGprpET5g_RxvV2aCck9ML7LgjKUPPrGb8OA" />
     <meta name="baidu-site-verification" content="vQbbxwcRRY" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。
-渐渐地，世界暗下来了。
-月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。">
+    <meta name="description" content="Spring Boot 日志概述Spring Boot 采用 Commons Logging 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对Java Util Logging，Log4J2 和 Logback 的支持。每种方式下，Console 的日志输出，作为默认的日志输出。在默认情况下，采用Starters 来启动Spring Boot 项目，Logback 是默认的日志实">
 <meta property="og:type" content="article">
-<meta property="og:title" content="流浪者和罂粟花">
-<meta property="og:url" content="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/index.html">
+<meta property="og:title" content="寻根究底 - Spring Boot 日志概述(1)">
+<meta property="og:url" content="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/index.html">
 <meta property="og:site_name" content="TRAMP 的博客">
-<meta property="og:description" content="天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。
-渐渐地，世界暗下来了。
-月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。">
-<meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/thumb/yingsuhua.png">
-<meta property="og:updated_time" content="2016-09-30T12:10:04.582Z">
+<meta property="og:description" content="Spring Boot 日志概述Spring Boot 采用 Commons Logging 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对Java Util Logging，Log4J2 和 Logback 的支持。每种方式下，Console 的日志输出，作为默认的日志输出。在默认情况下，采用Starters 来启动Spring Boot 项目，Logback 是默认的日志实">
+<meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/spring/spring.png">
+<meta property="og:updated_time" content="2016-11-17T09:34:16.487Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="流浪者和罂粟花">
-<meta name="twitter:description" content="天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。
-渐渐地，世界暗下来了。
-月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。">
-<meta name="twitter:image" content="https://zhangzhaoyu.github.io/css/images/thumb/yingsuhua.png">
+<meta name="twitter:title" content="寻根究底 - Spring Boot 日志概述(1)">
+<meta name="twitter:description" content="Spring Boot 日志概述Spring Boot 采用 Commons Logging 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对Java Util Logging，Log4J2 和 Logback 的支持。每种方式下，Console 的日志输出，作为默认的日志输出。在默认情况下，采用Starters 来启动Spring Boot 项目，Logback 是默认的日志实">
+<meta name="twitter:image" content="https://zhangzhaoyu.github.io/css/images/spring/spring.png">
     
 
     
@@ -215,7 +209,7 @@ var _hmt = _hmt || [];
 </aside>
 
             
-            <section id="main"><article id="post-tramp-and-poppy-flower" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-spring-boot-logging-introduction" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -223,7 +217,7 @@ var _hmt = _hmt || [];
                 
     
         <h1 class="article-title" itemprop="name">
-            流浪者和罂粟花
+            寻根究底 - Spring Boot 日志概述(1)
         </h1>
     
 
@@ -232,22 +226,17 @@ var _hmt = _hmt || [];
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/09/27/tramp-and-poppy-flower/">
-            <time datetime="2016-09-27T15:00:00.000Z" itemprop="datePublished">2016-09-27</time>
+        <a href="/2016/11/16/spring-boot-logging-introduction/">
+            <time datetime="2016-11-16T14:07:26.000Z" itemprop="datePublished">2016-11-16</time>
         </a>
     </div>
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/diary/">diary</a>
-    </div>
-
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/story/">story</a>
+        <a class="tag-link" href="/tags/logging/">-logging</a>
     </div>
 
                     </div>
@@ -258,47 +247,90 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>天边的最后一丝光亮终于在黑暗笼罩世界的最后一刻消散在远处的那座山的背后。</p>
-<p>渐渐地，世界暗下来了。</p>
-<p>月亮清冷的在一朵浓黑的密云里发着幽幽灰光，那光亮好似冻彻心扉的坚冰，若隐若现的冒着丝丝白气，那白气在空中翻腾，扭曲，变形，幻化出许许多多魑魅魍魉，他们面目狰狞地飞向这个世界，唱着狂欢的笙歌，去吞噬，去冻结，去撕扯这个世界。<br><a id="more"></a><br>有一条小路在这轮孤月下面延伸，奔跑，不知道最终要去向的是哪个地方。小路旁边的有一盏灯火在暮色中亮起来。</p>
-<p>透过那微弱的灯光，在窗户里面的一个圆桌子旁边围坐一家人，有个神情坚毅里透着憔悴的男人，有个体态瘦削却流露着母爱的女人，有个鼻子里流着鼻涕的小男孩正津津有味的吃着不知道是什么的东西。在小男孩的旁边有一只小狗欢快的摇着尾巴，看着小主人津津有味的吃着的东西，眼睛里有着自己绝对忠诚的小主人。</p>
-<p>在这个有着一盏灯的小房子的后面，是一望无际的有着黄色土壤的田地。黑色的风绕过高山，掠过树梢，吹向了这片土地。</p>
-<p>哗哗… 阵阵植物叶子簌簌地摩擦的声音，彼此起伏，蔓延开来。风掀起的黑色的叶子，呼啸着奔向对面的那片漆黑之中。</p>
-<p>月亮渐渐地完全地被纯黑色的巨大黑幕所吞噬。</p>
-<p>黑暗在世界任何一个角落里开着狂欢的派对。吸食着人们内心里最后的那么一点对于理想，自由，爱的追求。</p>
-<p>恐慌，恐慌，满世界的恐慌。</p>
-<p>黑暗，黑暗，满世界的黑暗。</p>
-<p>在那个小屋子里的角落里，一个小男孩抱着一只懒洋洋的小狗甜甜地静静地在安睡。</p>
-<p>那是一个美妙的梦，屋后面的那一望无际的植物终于开花了，在小男孩的爸爸妈妈付出了极其艰辛的劳动和汗水之后终于开花了。因为小男孩知道当这些个植物的开花的时候，肯定就是爸爸妈妈展开笑颜的时候了。</p>
-<p>曾经很多个夜晚，小男孩对着夜空发呆，希望寻着一颗能够实现他愿望的星星。</p>
-<p>在这个梦里，小男孩终于可以在花海奔跑，呵呵的笑声伴着小狗的汪汪叫声，在这片土地里延伸。</p>
-<p>一群穿着黑色制服的人顺着那条小路向着这个黑暗里唯一的存在着微弱亮光的地方走来。</p>
-<p>树影斑驳，人影可怖。</p>
-<p>咚咚…</p>
-<p>圆桌旁边男人，内心一惊，随后握紧了拳头。重重地压在桌子。旁边的妻子轻轻地把手放在男人的肩上。</p>
-<p>“不要惊醒我的孩子，我们跟你们走！”。</p>
-<p>吱吱…</p>
-<p>门关上了。</p>
-<p>四条人影在那条小道上前行，鞋子跟地面沙子摩擦的声音不时的响起，最后，最后，消失在远处的黑暗之中。</p>
-<p>身后的那所小房子里，灯光依旧是那样地微弱。</p>
-<p>只是，只是一个小男孩还有一个小狗依然静静地甜甜地睡着。</p>
-<p>一夜的黑暗在太阳跳过对面山头的时候消失的无影无踪。</p>
-<p>小男孩高兴地奔跑着去平时爸爸妈妈早上起来会去劳作的那片田地里，去告诉他们自己昨天做了一个美丽的梦。</p>
-<p>时间渐渐过去了，小男孩有些心慌了，还不见爸爸妈妈。小狗在身后也嗷嗷地叫着，表示着不安。</p>
-<p>小男孩疯狂地迈着小脚步在那片田地里穿梭。一朵朵美丽的花朵在他的眼前招摇，挡住了他寻找爸爸妈妈的视线。同时也淹没了小男孩小小身体。</p>
-<p>黑夜渐渐地如梦魇般来到了。</p>
-<p>在昨夜的那个小屋子里，再也没有了灯光。</p>
-<p>哪怕是微弱的。</p>
-<p>只是在那条路上站着一个小小男孩和一只小小狗。</p>
-<p>在那条路上，小男孩决定去流浪，他没有眼泪，他不知掉为什么要流眼泪，为谁而流。小男孩反过身子，指着小狗，又指了一下与自己相对的另外与一个方向，狗狗很听话的把自己的头掉到了那个方向。</p>
-<p>从此，便开始了两个生命体的流浪之旅。</p>
-<p>两个身影消失在了夜色之中，只剩下那个小屋和午后的那片天地和田地里一望无际正开着花的植物。</p>
-<p>匆匆的，时间流逝。那一个夜晚，那几个人物和故事，也归入到历史的洪流里，渐渐地渺小渺小，渺小到貌似不曾存在过。</p>
-<p>一晃十几年过去了，过去了就是过去了。</p>
-<p>后来的后来，有人看到了在那片山脚下，在那个曾经的小屋的后面的那片一望无际的田地里，每当植物开花的时候总有一个人影和一只狗游荡在那儿周围。他们的身影时隐实现在那一片罂粟花的海洋里。他们捍卫着在罂粟开花期的每一朵花，他们抵御了在罂粟花最美丽季节任何一个企图采摘哪怕一朵的破坏者。</p>
-<p>一人一狗一片罂粟花。</p>
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Boot-日志概述"><span class="toc-number">1.</span> <span class="toc-text">Spring Boot 日志概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#默认日志"><span class="toc-number">2.</span> <span class="toc-text">默认日志</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#日志格式"><span class="toc-number">2.1.</span> <span class="toc-text">日志格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制台输出"><span class="toc-number">2.2.</span> <span class="toc-text">控制台输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Color-coded-输出"><span class="toc-number">2.3.</span> <span class="toc-text">Color-coded 输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件输出"><span class="toc-number">2.4.</span> <span class="toc-text">文件输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志等级"><span class="toc-number">2.5.</span> <span class="toc-text">日志等级</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自定义配置"><span class="toc-number">3.</span> <span class="toc-text">自定义配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置概述"><span class="toc-number">3.1.</span> <span class="toc-text">配置概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义配置文件加载"><span class="toc-number">3.2.</span> <span class="toc-text">自定义配置文件加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统变量"><span class="toc-number">3.3.</span> <span class="toc-text">系统变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logback-扩展"><span class="toc-number">3.4.</span> <span class="toc-text">Logback 扩展</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考引用"><span class="toc-number">4.</span> <span class="toc-text">参考引用</span></a></li></ol>
+                </div>
+            
+            <h1 id="Spring-Boot-日志概述"><a href="#Spring-Boot-日志概述" class="headerlink" title="Spring Boot 日志概述"></a>Spring Boot 日志概述</h1><p>Spring Boot 采用 <code>Commons Logging</code> 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对<code>Java Util Logging</code>，<code>Log4J2</code> 和 <code>Logback</code> 的支持。每种方式下，<code>Console</code> 的日志输出，作为默认的日志输出。<br>在默认情况下，采用<code>Starters</code> 来启动Spring Boot 项目，<code>Logback</code> 是默认的日志实现方案。当然，Logback 路由能够保证依赖的包使用的其他日志也可以很好的工作。<br><a id="more"></a></p>
+<h1 id="默认日志"><a href="#默认日志" class="headerlink" title="默认日志"></a>默认日志</h1><h2 id="日志格式"><a href="#日志格式" class="headerlink" title="日志格式"></a>日志格式</h2><p>默认的日志格式如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2014-03-05 10:57:51.112  INFO 45469 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/7.0.52</div><div class="line">2014-03-05 10:57:51.253  INFO 45469 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]</div></pre></td></tr></table></figure>
+<p>具体的含义如下：</p>
+<ul>
+<li>精确到毫秒的日期和时间</li>
+<li>Log Level - <code>ERROR</code>，<code>WARN</code>，<code>INFO</code> 或者 <code>TRACE</code></li>
+<li>进程ID</li>
+<li><code>---</code> 具体的日志内容的分隔符</li>
+<li>线程名字</li>
+<li>Logger Name - 通常是定义日志记录的类名</li>
+<li>具体的日志内容</li>
+</ul>
+<blockquote>
+<p>需要注意的是Logback 没有 <code>FATAL</code> 的日志级别，它被映射到<code>ERROR</code></p>
+</blockquote>
+<h2 id="控制台输出"><a href="#控制台输出" class="headerlink" title="控制台输出"></a>控制台输出</h2><p>默认的日志配置会将ERROR，WARN 和 INFO级别的日志输出到控制台。我们也可以使用”DEBUG” 模式才输出更多的内容。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -jar myapp.jar --debug</div></pre></td></tr></table></figure></p>
+<p>也可以在Spring Boot的配置文件<code>application.properties</code> 中配置<code>debug=true</code> 来开启更多的日志输出功能。此模式只能输出被选择的核心logger 来输出更多的消息，例如内嵌的容器，Hibernate 和spring Boot。我们自己的应用并不会输出Debug 级别的日志。另外同上我们也可以配置<code>trace</code> 模式来输出更多的日志内容，但也只是一个被选择的核心Logger 列表。</p>
+<h2 id="Color-coded-输出"><a href="#Color-coded-输出" class="headerlink" title="Color-coded 输出"></a>Color-coded 输出</h2><p>如果终端支持<code>ANSI</code>，将会输出彩色的日志。可以再<code>application.properties</code> 文件中设置<code>spring.output.ansi.enabled</code> 为<code>always</code>，<code>detect</code> 和<code>never</code> 来覆盖默认的级别，默认为<code>detect</code>。<br>彩色的样式采用<code>%clr</code> 来进行转换。最简单的模式就是日志将根据Level 输出为不同的颜色:</p>
+<ul>
+<li>FATAL : Red</li>
+<li>ERROR : Red</li>
+<li>WARN : Yellow</li>
+<li>INFO : Green</li>
+<li>DEBUG : Green</li>
+<li>TRACE : Green</li>
+</ul>
+<p>除此之外，可以指定转换日志时的颜色，通过指定转换选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%clr(%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125;)&#123;option&#125;</div></pre></td></tr></table></figure></p>
+<p><code>option</code> 可以指定为：</p>
+<ul>
+<li>blue</li>
+<li>cyan</li>
+<li>faint</li>
+<li>green</li>
+<li>magenta</li>
+<li>red</li>
+<li>yellow</li>
+</ul>
+<h2 id="文件输出"><a href="#文件输出" class="headerlink" title="文件输出"></a>文件输出</h2><p>默认情况下，Spring Boot 仅仅将日志输出在控制台。如果需要将日志输出到文件需要在<code>application.properties</code> 中配置<code>logging.file</code> 或者 <code>logging.path</code>。</p>
+<ul>
+<li>logging.file : 输出到指定的文件，可以为相对路径或者绝对路径</li>
+<li>logging.path : 与logging.file 是互斥的，指定文件的路径，默认的文件名为<code>spring.log</code></li>
+</ul>
+<p>日志文件默认达到10Mb 时，将会从新打开一个文件输出，默认的日志输出级别为ERROR，WARN 和 INFO。需要注意的是日志系统的初始化要早于系统的生命周期，因此logging properties 不能够通过@PropertySource 注解获取。</p>
+<p>Logging properties 相对于实际的日志框架是独立的，因此特定的日志的配置参数并不归Spring Boot 管理。</p>
+<h2 id="日志等级"><a href="#日志等级" class="headerlink" title="日志等级"></a>日志等级</h2><p>所有支持的日志系统都可以通过<code>logging.level.*</code>=LEVEL 在<code>application.properties</code> 中配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">logging.level.root=WARN</div><div class="line">logging.level.org.springframework.web=DEBUG</div><div class="line">logging.level.org.hibernate=ERROR</div></pre></td></tr></table></figure>
+<p>默认条件下，Spring Boot 重新映射了Thymeleaf 的INFO 级别日志到DEBUG 级别。具体可以参见<code>LevelRemappingAppender</code> 类的细节。</p>
+<h1 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h1><h2 id="配置概述"><a href="#配置概述" class="headerlink" title="配置概述"></a>配置概述</h2><p>通过将不同的日志依赖包添加到<code>classpath</code> 中，Spring Boot 的日志系统能够判断激活不同的日志实现方式。更进一步的配置是将自定义的日志配置文件添加到<code>classpath</code> 中，或者通过Spring 的<code>logging.config</code> 来指定配置文件的位置。</p>
+<p>可以通过设置<code>org.springframework.boot.logging.LoggingSystem</code> 系统变量来配置一个特殊的日志系统。对应的设置值应该是<code>LoggingSystem</code> 的实现类。也可以将该变量的值设置为<code>none</code> 来关闭Spring Boot 的日志。</p>
+<p>由于日志的初始化早于<code>ApplicationContext</code> 的创建，因此不能够通过<code>@Configuration</code> 文件来进行配置。只能通过系统变量或者外部的传统配置文件来进行配置。</p>
+<h2 id="自定义配置文件加载"><a href="#自定义配置文件加载" class="headerlink" title="自定义配置文件加载"></a>自定义配置文件加载</h2><ul>
+<li><strong>Logback</strong> : logback-spring.xml, logback-spring.groovy, logback.xml 或者logback.groovy</li>
+<li><strong>Log4j2</strong> : log4j2-spring.xml 或者　log4j2.xml</li>
+<li><strong>JDK(Java Util Logging)</strong> : logging.properties</li>
+</ul>
+<blockquote>
+<p>需要注意的是官方推荐使用<code>-spring</code> 的配置方式。如果使用标准的配置方式，Spring 不能完全控制日志的初始化。此外，当采用<code>executable jar</code> 方式时，Java Util Logging 会产生已知的错误，因此要避免使用。</p>
+</blockquote>
+<h2 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h2><p>为了帮助实现自定义，以下的Spring Environment 变量会被转化为系统变量</p>
+<ul>
+<li><code>logging.exception-conversion-word</code> : <code>LOG_EXCEPTION_CONVERSION_WORD</code> : 日志异常时的转换语</li>
+<li><code>logging.file</code> : <code>LOG_FILE</code> : 默认的日志文件路径和名称配置</li>
+<li><code>logging.path</code> : <code>LOG_PATH</code> : 默认的日志路径配置</li>
+<li><code>logging.pattern.console</code> : <code>CONSOLE_LOG_PATTERN</code> : 控制台日志的格式，只支持logback</li>
+<li><code>logging.pattern.file</code> : <code>FILE_LOG_PATTERN</code> : 日志文件中日志的格式，只支持logback</li>
+<li><code>logging.pattern.level</code> : <code>LOG_LEVEL_PATTERN</code> : 日志等级的格式渲染，只支持logback</li>
+<li><code>PID</code> : <code>PID</code> : 当前进程的ID</li>
+</ul>
+<p>如果想要在日志属性中使用占位符，需要使用<a href="http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/htmlsingle/#boot-features-external-config-placeholders-in-properties" target="_blank" rel="external">Spring Boot syntax</a> 而不是对应日志框架的语法。例如Logback 的属性名之间的分隔符为<code>:</code>，而不是其自身默认的<code>:-</code>。</p>
+<h2 id="Logback-扩展"><a href="#Logback-扩展" class="headerlink" title="Logback 扩展"></a>Logback 扩展</h2><p>为了实现Spring 对logback 的扩展，我们需要将logback 的配置文件的名字定义为<code>logback-spring.xml</code>，或者采用<code>logging.config</code> 来指定配置文件的位置。</p>
+<p>Spring Boot 可以采用<code>&lt;springProfile&gt;</code> 标签来激活不同的Spring Profile 配置。Profile 片段可以定义在<code>&lt;configuration&gt;</code> 元素的任何位置。可以使用<code>name</code> 属性来指明需要接受的profile 类型。可以用<code>,</code> 来指定多个profile。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"staging"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- configuration to be enabled when the "staging" profile is active --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"dev, staging"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- configuration to be enabled when the "dev" or "staging" profiles are active --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"!production"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- configuration to be enabled when the "production" profile is not active --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Spring Boot 也可以采用<code>&lt;springProperty&gt;</code> 标签来获取在Spring Environment 中定义的属性。也就是说可以在logback 配置文件中获取在<code>application.properties</code> 中定义的变量。通常它也能直接工作在logbak 的<code>&lt;property&gt;</code> 标签中。具体配置如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">springProperty</span> <span class="attr">scope</span>=<span class="string">"context"</span> <span class="attr">name</span>=<span class="string">"fluentHost"</span> <span class="attr">source</span>=<span class="string">"myapp.fluentd.host"</span></span></div><div class="line">        <span class="attr">defaultValue</span>=<span class="string">"localhost"</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"FLUENT"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.more.appenders.DataFluentAppender"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">remoteHost</span>&gt;</span>$&#123;fluentHost&#125;<span class="tag">&lt;/<span class="name">remoteHost</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">appender</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>此处采用的是<code>RelaxedPropertyResolver</code> 来获取Spring Environment 变量，因此在定义source的时候的变量采用虚线连接时，对应的变量可以松散的匹配。比如<code>my-property-name</code> 将会匹配<code>myPropertyName</code> 和<code>MY_PROPERTY_NAME</code>。</p>
+<h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><ol>
+<li><a href="http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/htmlsingle/#boot-features-logging" target="_blank" rel="external">Spring Boot Logging</a></li>
+</ol>
 <hr>
-<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/">https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/</a></p>
+<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/">https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</a></p>
 
         
         </div>
@@ -362,7 +394,7 @@ var _hmt = _hmt || [];
 
             
     
-        <a href="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/#comments" class="article-comment-link ds-thread-count" data-thread-key="2016/09/27/tramp-and-poppy-flower/">评论</a>
+        <a href="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/#comments" class="article-comment-link ds-thread-count" data-thread-key="2016/11/16/spring-boot-logging-introduction/">评论</a>
     
 
         </footer>
@@ -371,19 +403,10 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/09/30/spring-task-and-schedule-deep-research/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    Spring 寻根究底 - Spring 4.x Task 和 Schedule 概述
-                
-            </div>
-        </a>
     
-    
-        <a href="/2015/05/03/story-of-the-cloud/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/10/21/jms-activemq-queue-md/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">雲中的故事</div>
+            <div class="article-nav-title">ActiveMQ 寻根究低 - 点对点模式详解</div>
         </a>
     
 </nav>
@@ -505,7 +528,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread " data-thread-key="2016/09/27/tramp-and-poppy-flower/" data-title="流浪者和罂粟花" data-url="https://zhangzhaoyu.github.io/2016/09/27/tramp-and-poppy-flower/"></div>
+    <div class="ds-thread " data-thread-key="2016/11/16/spring-boot-logging-introduction/" data-title="寻根究底 - Spring Boot 日志概述(1)" data-url="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
