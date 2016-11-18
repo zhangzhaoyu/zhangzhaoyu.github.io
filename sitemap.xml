@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</loc>
+    <loc>https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/</loc>
     
-    <lastmod>2016-11-18T14:56:17.148Z</lastmod>
+    <lastmod>2016-11-18T15:26:42.467Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/</loc>
+    <loc>https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</loc>
     
-    <lastmod>2016-11-18T14:56:11.556Z</lastmod>
+    <lastmod>2016-11-18T14:56:17.148Z</lastmod>
     
   </url>
   
