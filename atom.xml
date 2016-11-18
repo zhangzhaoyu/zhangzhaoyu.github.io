@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangzhaoyu.github.io/"/>
-  <updated>2016-11-18T15:40:13.111Z</updated>
+  <updated>2016-11-18T15:44:28.683Z</updated>
   <id>https://zhangzhaoyu.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/"/>
     <id>https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/</id>
     <published>2016-11-18T13:50:01.000Z</published>
-    <updated>2016-11-18T15:40:13.111Z</updated>
+    <updated>2016-11-18T15:44:28.683Z</updated>
     
     <content type="html"><![CDATA[<h1 id="SLF4J-概述"><a href="#SLF4J-概述" class="headerlink" title="SLF4J 概述"></a>SLF4J 概述</h1><p><code>SLF4J(Simple Logging Facade for Java)</code> 是一个抽象的Java 日志框架门面。它不关注日志的具体实现方法，会在<code>deployment time</code>自动的发现日志的实现类。目前SLF4J 支持的日志实现框架有<code>java.util.logging</code>，<code>logback</code> 和<code>log4j</code>。SLf4J 在运行时，仅仅只需要依赖<code>slf4j-api-1.7.21.jar</code>。</p>
 <a id="more"></a>
@@ -41,7 +41,7 @@
 <ul>
 <li>JCL to SLF4J : 从Jakarta Commons Logging 桥接到SLF4J 需要使用<code>jcl-over-slf4j.jar</code>。它实现了JCL 的公共的API 接口，但是底部却是调用的SLF4J。由它替换到<code>commons-logging.jar</code>。同时可以解决commons logging 的classloader 问题。<code>jcl-over-slf4j.jar</code> 不能跟 <code>slf4j-jcl.jar</code> 同时使用。</li>
 <li>log4j-over-slf4j : 不改变一行代码的情况下，将log4j 桥接到slf4j。仅仅需要使用<code>log4j-over-slf4j.jar</code>替换<code>log4j.jar</code>。<code>log4j-over-slf4j.jar</code>和<code>slf4j-log4j12.jar</code> 不能同时出现。</li>
-<li>jul-to-slf4j : 将java.util.logging 桥接到slf4j。<code>ul-to-slf4j.jar</code>和<code>slf4j-jdk14.jar</code>不能同时出现。</li>
+<li>jul-to-slf4j : 将java.util.logging 桥接到slf4j。<code>jul-to-slf4j.jar</code>和<code>slf4j-jdk14.jar</code>不能同时出现。</li>
 </ul>
 <h2 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h2><h3 id="日志迁移功能"><a href="#日志迁移功能" class="headerlink" title="日志迁移功能"></a>日志迁移功能</h3><p>SLF4J 提供了现有的日志迁移工具。<a href="http://slf4j.org/migrator.html" target="_blank" rel="external">具体参见</a>。</p>
 <h3 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h3><p>SLF4J 同时提供了国际话功能。<a href="http://slf4j.org/localization.html" target="_blank" rel="external">具体参见</a>。</p>
