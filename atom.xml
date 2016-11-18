@@ -250,11 +250,11 @@
   </entry>
   
   <entry>
-    <title>设计模式寻根究底 - 单例模式（Singleton Pattern）</title>
+    <title>设计模式寻根究底 - 单例模式(Singleton Pattern)</title>
     <link href="https://zhangzhaoyu.github.io/2016/10/08/introduction-of-singleton-design-pattern/"/>
     <id>https://zhangzhaoyu.github.io/2016/10/08/introduction-of-singleton-design-pattern/</id>
     <published>2016-10-08T04:22:45.000Z</published>
-    <updated>2016-10-08T14:11:10.546Z</updated>
+    <updated>2016-11-18T13:25:21.372Z</updated>
     
     <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>单例模式是一个既简单又复杂的模式。简单在它想实现的目标十分容易理解，而又复杂在要写出线程安全的单例模式不是那么容易。单例模式的核心定义是：确保某个类只有一个实例，并提供一个访问该实例的全局访问点(Ensure a class has only instance, and provide a global point of access to it)。</p>
 <a id="more"></a>
