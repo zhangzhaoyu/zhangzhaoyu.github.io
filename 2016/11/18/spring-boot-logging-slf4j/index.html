@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>寻根究底 Logging - Spring Boot 日志概述 | TRAMP 的博客</title>
+    <title>寻根究底 Logging - SLF4J 概述 | TRAMP 的博客</title>
     <meta name="google-site-verification" content="gpo3ea0rGprpET5g_RxvV2aCck9ML7LgjKUPPrGb8OA" />
     <meta name="baidu-site-verification" content="vQbbxwcRRY" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Spring Boot 日志概述Spring Boot 采用 Commons Logging 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对Java Util Logging，Log4J2 和 Logback 的支持。每种方式下，Console 的日志输出，作为默认的日志输出。在默认情况下，采用Starters 来启动Spring Boot 项目，Logback 是默认的日志实">
+    <meta name="description" content="SLF4J 概述SLF4J(Simple Logging Facade for Java) 是一个抽象的Java 日志框架门面。它不关注日志的具体实现方法，会在deployment time自动的发现日志的实现类。目前SLF4J 支持的日志实现框架有java.util.logging，logback 和log4j。SLf4J 在运行时，仅仅只需要依赖slf4j-api-1.7.21.jar。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="寻根究底 Logging - Spring Boot 日志概述">
-<meta property="og:url" content="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/index.html">
+<meta property="og:title" content="寻根究底 Logging - SLF4J 概述">
+<meta property="og:url" content="https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/index.html">
 <meta property="og:site_name" content="TRAMP 的博客">
-<meta property="og:description" content="Spring Boot 日志概述Spring Boot 采用 Commons Logging 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对Java Util Logging，Log4J2 和 Logback 的支持。每种方式下，Console 的日志输出，作为默认的日志输出。在默认情况下，采用Starters 来启动Spring Boot 项目，Logback 是默认的日志实">
+<meta property="og:description" content="SLF4J 概述SLF4J(Simple Logging Facade for Java) 是一个抽象的Java 日志框架门面。它不关注日志的具体实现方法，会在deployment time自动的发现日志的实现类。目前SLF4J 支持的日志实现框架有java.util.logging，logback 和log4j。SLf4J 在运行时，仅仅只需要依赖slf4j-api-1.7.21.jar。">
 <meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/spring/spring.png">
-<meta property="og:updated_time" content="2016-11-18T14:56:17.148Z">
+<meta property="og:updated_time" content="2016-11-18T14:56:11.556Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="寻根究底 Logging - Spring Boot 日志概述">
-<meta name="twitter:description" content="Spring Boot 日志概述Spring Boot 采用 Commons Logging 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对Java Util Logging，Log4J2 和 Logback 的支持。每种方式下，Console 的日志输出，作为默认的日志输出。在默认情况下，采用Starters 来启动Spring Boot 项目，Logback 是默认的日志实">
+<meta name="twitter:title" content="寻根究底 Logging - SLF4J 概述">
+<meta name="twitter:description" content="SLF4J 概述SLF4J(Simple Logging Facade for Java) 是一个抽象的Java 日志框架门面。它不关注日志的具体实现方法，会在deployment time自动的发现日志的实现类。目前SLF4J 支持的日志实现框架有java.util.logging，logback 和log4j。SLf4J 在运行时，仅仅只需要依赖slf4j-api-1.7.21.jar。">
 <meta name="twitter:image" content="https://zhangzhaoyu.github.io/css/images/spring/spring.png">
     
 
@@ -210,7 +210,7 @@ var _hmt = _hmt || [];
 </aside>
 
             
-            <section id="main"><article id="post-spring-boot-logging-introduction" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-spring-boot-logging-slf4j" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -218,7 +218,7 @@ var _hmt = _hmt || [];
             
     
         <h1 class="article-title" itemprop="name">
-            寻根究底 Logging - Spring Boot 日志概述
+            寻根究底 Logging - SLF4J 概述
         </h1>
     
 
@@ -227,8 +227,8 @@ var _hmt = _hmt || [];
                 
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/11/16/spring-boot-logging-introduction/">
-            <time datetime="2016-11-16T14:07:26.000Z" itemprop="datePublished">2016-11-16</time>
+        <a href="/2016/11/18/spring-boot-logging-slf4j/">
+            <time datetime="2016-11-18T13:50:01.000Z" itemprop="datePublished">2016-11-18</time>
         </a>
     </div>
 
@@ -242,7 +242,7 @@ var _hmt = _hmt || [];
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/logging/">-logging</a>
+        <a class="tag-link" href="/tags/SLF4J/">SLF4J</a>
     </div>
 
             </div>
@@ -255,88 +255,30 @@ var _hmt = _hmt || [];
             
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Boot-日志概述"><span class="toc-number">1.</span> <span class="toc-text">Spring Boot 日志概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#默认日志"><span class="toc-number">2.</span> <span class="toc-text">默认日志</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#日志格式"><span class="toc-number">2.1.</span> <span class="toc-text">日志格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制台输出"><span class="toc-number">2.2.</span> <span class="toc-text">控制台输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Color-coded-输出"><span class="toc-number">2.3.</span> <span class="toc-text">Color-coded 输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件输出"><span class="toc-number">2.4.</span> <span class="toc-text">文件输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志等级"><span class="toc-number">2.5.</span> <span class="toc-text">日志等级</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自定义配置"><span class="toc-number">3.</span> <span class="toc-text">自定义配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置概述"><span class="toc-number">3.1.</span> <span class="toc-text">配置概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义配置文件加载"><span class="toc-number">3.2.</span> <span class="toc-text">自定义配置文件加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统变量"><span class="toc-number">3.3.</span> <span class="toc-text">系统变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logback-扩展"><span class="toc-number">3.4.</span> <span class="toc-text">Logback 扩展</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考引用"><span class="toc-number">4.</span> <span class="toc-text">参考引用</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SLF4J-概述"><span class="toc-number">1.</span> <span class="toc-text">SLF4J 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SLF4J-详解"><span class="toc-number">2.</span> <span class="toc-text">SLF4J 详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#日志实现框架的切换机制"><span class="toc-number">2.1.</span> <span class="toc-text">日志实现框架的切换机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MDC-支持"><span class="toc-number">2.2.</span> <span class="toc-text">MDC 支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志桥接"><span class="toc-number">2.3.</span> <span class="toc-text">日志桥接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考引用"><span class="toc-number">3.</span> <span class="toc-text">参考引用</span></a></li></ol>
             </div>
             
-            <h1 id="Spring-Boot-日志概述"><a href="#Spring-Boot-日志概述" class="headerlink" title="Spring Boot 日志概述"></a>Spring Boot 日志概述</h1><p>Spring Boot 采用 <code>Commons Logging</code> 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对<code>Java Util Logging</code>，<code>Log4J2</code> 和 <code>Logback</code> 的支持。每种方式下，<code>Console</code> 的日志输出，作为默认的日志输出。<br>在默认情况下，采用<code>Starters</code> 来启动Spring Boot 项目，<code>Logback</code> 是默认的日志实现方案。当然，Logback 路由能够保证依赖的包使用的其他日志也可以很好的工作。<br><a id="more"></a></p>
-<h1 id="默认日志"><a href="#默认日志" class="headerlink" title="默认日志"></a>默认日志</h1><h2 id="日志格式"><a href="#日志格式" class="headerlink" title="日志格式"></a>日志格式</h2><p>默认的日志格式如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2014-03-05 10:57:51.112  INFO 45469 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/7.0.52</div><div class="line">2014-03-05 10:57:51.253  INFO 45469 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]</div></pre></td></tr></table></figure>
-<p>具体的含义如下：</p>
+            <h1 id="SLF4J-概述"><a href="#SLF4J-概述" class="headerlink" title="SLF4J 概述"></a>SLF4J 概述</h1><p><code>SLF4J(Simple Logging Facade for Java)</code> 是一个抽象的Java 日志框架门面。它不关注日志的具体实现方法，会在<code>deployment time</code>自动的发现日志的实现类。目前SLF4J 支持的日志实现框架有<code>java.util.logging</code>，<code>logback</code> 和<code>log4j</code>。SLf4J 在运行时，仅仅只需要依赖<code>slf4j-api-1.7.21.jar</code>。</p>
+<a id="more"></a>
+<h1 id="SLF4J-详解"><a href="#SLF4J-详解" class="headerlink" title="SLF4J 详解"></a>SLF4J 详解</h1><h2 id="日志实现框架的切换机制"><a href="#日志实现框架的切换机制" class="headerlink" title="日志实现框架的切换机制"></a>日志实现框架的切换机制</h2><p>SLF4J 支持多种不同的日志实现框架。要实现各种日志实现框架的切换只需要在<code>classpath</code> 中包含对应的转换和实现JAR 包即可。如下图所示：<br><img src="concrete-bindings.png" alt="SLF4J 日志实现框架配置图"></p>
 <ul>
-<li>精确到毫秒的日期和时间</li>
-<li>Log Level - <code>ERROR</code>，<code>WARN</code>，<code>INFO</code> 或者 <code>TRACE</code></li>
-<li>进程ID</li>
-<li><code>---</code> 具体的日志内容的分隔符</li>
-<li>线程名字</li>
-<li>Logger Name - 通常是定义日志记录的类名</li>
-<li>具体的日志内容</li>
+<li><code>slf4j-simple-1.7.21.jar</code> : SLF4J 提供的日志简单的输出类，将把所有的错误信息输出到<code>System.err</code>，该实现方法在比较小的应用用比较实用。</li>
+<li><code>slf4j-log4j12-1.7.21.jar</code> : 绑定Log4j 的实现，还需要在<code>classpath</code> 中加入<code>log4j.jar</code></li>
+<li><code>slf4j-jdk14-1.7.21.jar</code> : 绑定java.util.logging，需要JDK 1.4 以上</li>
+<li><code>logback-classic-1.0.13.jar</code> : 绑定logback 实现，还需要加入<code>logback-core-1.0.13.jar</code>。logback 是默认实现SLF4J 的日志输出显现类。经作者测试性能要远远高于log4j。</li>
+<li><code>slf4j-jcl-1.7.21.jar</code> : 该绑定会将所有的SLF4J 代理到JCL(Jakarta Commons Logging)</li>
+<li><code>slf4j-nop-1.7.21.jar</code> : 绑定为了NOP，所有的日志将不会被输出。</li>
 </ul>
 <blockquote>
-<p>需要注意的是Logback 没有 <code>FATAL</code> 的日志级别，它被映射到<code>ERROR</code></p>
+<p>需要注意的是不要同时在<code>classpath</code> 包含多个日志实现类。否则SLF4J 会报错。在SLF4J 1.6 之后的版本中，在<code>classpath</code> 没有绑定实现类，不会跑出错误，仅仅是警告提示。</p>
 </blockquote>
-<h2 id="控制台输出"><a href="#控制台输出" class="headerlink" title="控制台输出"></a>控制台输出</h2><p>默认的日志配置会将ERROR，WARN 和 INFO级别的日志输出到控制台。我们也可以使用”DEBUG” 模式才输出更多的内容。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -jar myapp.jar --debug</div></pre></td></tr></table></figure></p>
-<p>也可以在Spring Boot的配置文件<code>application.properties</code> 中配置<code>debug=true</code> 来开启更多的日志输出功能。此模式只能输出被选择的核心logger 来输出更多的消息，例如内嵌的容器，Hibernate 和spring Boot。我们自己的应用并不会输出Debug 级别的日志。另外同上我们也可以配置<code>trace</code> 模式来输出更多的日志内容，但也只是一个被选择的核心Logger 列表。</p>
-<h2 id="Color-coded-输出"><a href="#Color-coded-输出" class="headerlink" title="Color-coded 输出"></a>Color-coded 输出</h2><p>如果终端支持<code>ANSI</code>，将会输出彩色的日志。可以再<code>application.properties</code> 文件中设置<code>spring.output.ansi.enabled</code> 为<code>always</code>，<code>detect</code> 和<code>never</code> 来覆盖默认的级别，默认为<code>detect</code>。<br>彩色的样式采用<code>%clr</code> 来进行转换。最简单的模式就是日志将根据Level 输出为不同的颜色:</p>
-<ul>
-<li>FATAL : Red</li>
-<li>ERROR : Red</li>
-<li>WARN : Yellow</li>
-<li>INFO : Green</li>
-<li>DEBUG : Green</li>
-<li>TRACE : Green</li>
-</ul>
-<p>除此之外，可以指定转换日志时的颜色，通过指定转换选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%clr(%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125;)&#123;option&#125;</div></pre></td></tr></table></figure></p>
-<p><code>option</code> 可以指定为：</p>
-<ul>
-<li>blue</li>
-<li>cyan</li>
-<li>faint</li>
-<li>green</li>
-<li>magenta</li>
-<li>red</li>
-<li>yellow</li>
-</ul>
-<h2 id="文件输出"><a href="#文件输出" class="headerlink" title="文件输出"></a>文件输出</h2><p>默认情况下，Spring Boot 仅仅将日志输出在控制台。如果需要将日志输出到文件需要在<code>application.properties</code> 中配置<code>logging.file</code> 或者 <code>logging.path</code>。</p>
-<ul>
-<li>logging.file : 输出到指定的文件，可以为相对路径或者绝对路径</li>
-<li>logging.path : 与logging.file 是互斥的，指定文件的路径，默认的文件名为<code>spring.log</code></li>
-</ul>
-<p>日志文件默认达到10Mb 时，将会从新打开一个文件输出，默认的日志输出级别为ERROR，WARN 和 INFO。需要注意的是日志系统的初始化要早于系统的生命周期，因此logging properties 不能够通过@PropertySource 注解获取。</p>
-<p>Logging properties 相对于实际的日志框架是独立的，因此特定的日志的配置参数并不归Spring Boot 管理。</p>
-<h2 id="日志等级"><a href="#日志等级" class="headerlink" title="日志等级"></a>日志等级</h2><p>所有支持的日志系统都可以通过<code>logging.level.*</code>=LEVEL 在<code>application.properties</code> 中配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">logging.level.root=WARN</div><div class="line">logging.level.org.springframework.web=DEBUG</div><div class="line">logging.level.org.hibernate=ERROR</div></pre></td></tr></table></figure>
-<p>默认条件下，Spring Boot 重新映射了Thymeleaf 的INFO 级别日志到DEBUG 级别。具体可以参见<code>LevelRemappingAppender</code> 类的细节。</p>
-<h1 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h1><h2 id="配置概述"><a href="#配置概述" class="headerlink" title="配置概述"></a>配置概述</h2><p>通过将不同的日志依赖包添加到<code>classpath</code> 中，Spring Boot 的日志系统能够判断激活不同的日志实现方式。更进一步的配置是将自定义的日志配置文件添加到<code>classpath</code> 中，或者通过Spring 的<code>logging.config</code> 来指定配置文件的位置。</p>
-<p>可以通过设置<code>org.springframework.boot.logging.LoggingSystem</code> 系统变量来配置一个特殊的日志系统。对应的设置值应该是<code>LoggingSystem</code> 的实现类。也可以将该变量的值设置为<code>none</code> 来关闭Spring Boot 的日志。</p>
-<p>由于日志的初始化早于<code>ApplicationContext</code> 的创建，因此不能够通过<code>@Configuration</code> 文件来进行配置。只能通过系统变量或者外部的传统配置文件来进行配置。</p>
-<h2 id="自定义配置文件加载"><a href="#自定义配置文件加载" class="headerlink" title="自定义配置文件加载"></a>自定义配置文件加载</h2><ul>
-<li><strong>Logback</strong> : logback-spring.xml, logback-spring.groovy, logback.xml 或者logback.groovy</li>
-<li><strong>Log4j2</strong> : log4j2-spring.xml 或者　log4j2.xml</li>
-<li><strong>JDK(Java Util Logging)</strong> : logging.properties</li>
-</ul>
-<blockquote>
-<p>需要注意的是官方推荐使用<code>-spring</code> 的配置方式。如果使用标准的配置方式，Spring 不能完全控制日志的初始化。此外，当采用<code>executable jar</code> 方式时，Java Util Logging 会产生已知的错误，因此要避免使用。</p>
-</blockquote>
-<h2 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h2><p>为了帮助实现自定义，以下的Spring Environment 变量会被转化为系统变量</p>
-<ul>
-<li><code>logging.exception-conversion-word</code> : <code>LOG_EXCEPTION_CONVERSION_WORD</code> : 日志异常时的转换语</li>
-<li><code>logging.file</code> : <code>LOG_FILE</code> : 默认的日志文件路径和名称配置</li>
-<li><code>logging.path</code> : <code>LOG_PATH</code> : 默认的日志路径配置</li>
-<li><code>logging.pattern.console</code> : <code>CONSOLE_LOG_PATTERN</code> : 控制台日志的格式，只支持logback</li>
-<li><code>logging.pattern.file</code> : <code>FILE_LOG_PATTERN</code> : 日志文件中日志的格式，只支持logback</li>
-<li><code>logging.pattern.level</code> : <code>LOG_LEVEL_PATTERN</code> : 日志等级的格式渲染，只支持logback</li>
-<li><code>PID</code> : <code>PID</code> : 当前进程的ID</li>
-</ul>
-<p>如果想要在日志属性中使用占位符，需要使用<a href="http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/htmlsingle/#boot-features-external-config-placeholders-in-properties" target="_blank" rel="external">Spring Boot syntax</a> 而不是对应日志框架的语法。例如Logback 的属性名之间的分隔符为<code>:</code>，而不是其自身默认的<code>:-</code>。</p>
-<h2 id="Logback-扩展"><a href="#Logback-扩展" class="headerlink" title="Logback 扩展"></a>Logback 扩展</h2><p>为了实现Spring 对logback 的扩展，我们需要将logback 的配置文件的名字定义为<code>logback-spring.xml</code>，或者采用<code>logging.config</code> 来指定配置文件的位置。</p>
-<p>Spring Boot 可以采用<code>&lt;springProfile&gt;</code> 标签来激活不同的Spring Profile 配置。Profile 片段可以定义在<code>&lt;configuration&gt;</code> 元素的任何位置。可以使用<code>name</code> 属性来指明需要接受的profile 类型。可以用<code>,</code> 来指定多个profile。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"staging"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- configuration to be enabled when the "staging" profile is active --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"dev, staging"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- configuration to be enabled when the "dev" or "staging" profiles are active --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"!production"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- configuration to be enabled when the "production" profile is not active --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>Spring Boot 也可以采用<code>&lt;springProperty&gt;</code> 标签来获取在Spring Environment 中定义的属性。也就是说可以在logback 配置文件中获取在<code>application.properties</code> 中定义的变量。通常它也能直接工作在logbak 的<code>&lt;property&gt;</code> 标签中。具体配置如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">springProperty</span> <span class="attr">scope</span>=<span class="string">"context"</span> <span class="attr">name</span>=<span class="string">"fluentHost"</span> <span class="attr">source</span>=<span class="string">"myapp.fluentd.host"</span></span></div><div class="line">        <span class="attr">defaultValue</span>=<span class="string">"localhost"</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"FLUENT"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.more.appenders.DataFluentAppender"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">remoteHost</span>&gt;</span>$&#123;fluentHost&#125;<span class="tag">&lt;/<span class="name">remoteHost</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">appender</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>此处采用的是<code>RelaxedPropertyResolver</code> 来获取Spring Environment 变量，因此在定义source的时候的变量采用虚线连接时，对应的变量可以松散的匹配。比如<code>my-property-name</code> 将会匹配<code>myPropertyName</code> 和<code>MY_PROPERTY_NAME</code>。</p>
+<h2 id="MDC-支持"><a href="#MDC-支持" class="headerlink" title="MDC 支持"></a>MDC 支持</h2><p><code>MDC(Mapped Diagnostic Context)</code>基本上来说是一个由日志框架管理的<code>map</code> 对象。应用程序代码可以将<code>key-code</code> 存储在对象上。之后，日志框架可以取出MDC 中的数据，输出到日志信息中。如果日志实现框架支持MDC，SLF4J 将会代理对应的日志框架管理MDC。目前只有log4j 和 logback 支持。</p>
+<h2 id="日志桥接"><a href="#日志桥接" class="headerlink" title="日志桥接"></a>日志桥接</h2><p>通常我们的应用程序会依赖不同的JAR 包，而不同的JAR 又由于各自的选择会有各种不同的日志实现框架。因此，如何在一个应用中来统一日志的输出形式，是一个需要解决的问题。SLF4J 提供了<code>Bridging legacy APIs</code> 来实现该功能。</p>
 <h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><ol>
-<li><a href="http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/htmlsingle/#boot-features-logging" target="_blank" rel="external">Spring Boot Logging</a></li>
+<li><a href="http://www.slf4j.org/manual.html" target="_blank" rel="external">SLF4J Manual</a></li>
 </ol>
 <hr>
-<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/">https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</a></p>
+<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/">https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/</a></p>
 
             
         </div>
@@ -400,7 +342,7 @@ var _hmt = _hmt || [];
 
             
     
-        <a href="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/#comments" class="article-comment-link ds-thread-count" data-thread-key="2016/11/16/spring-boot-logging-introduction/">评论</a>
+        <a href="https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/#comments" class="article-comment-link ds-thread-count" data-thread-key="2016/11/18/spring-boot-logging-slf4j/">评论</a>
     
 
         </footer>
@@ -409,19 +351,10 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
     
-        <a href="/2016/11/18/spring-boot-logging-slf4j/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    寻根究底 Logging - SLF4J 概述
-                
-            </div>
-        </a>
     
-    
-        <a href="/2016/10/21/jms-activemq-queue-md/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/11/16/spring-boot-logging-introduction/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">ActiveMQ 寻根究低 - 点对点模式详解</div>
+            <div class="article-nav-title">寻根究底 Logging - Spring Boot 日志概述</div>
         </a>
     
 </nav>
@@ -543,7 +476,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread " data-thread-key="2016/11/16/spring-boot-logging-introduction/" data-title="寻根究底 Logging - Spring Boot 日志概述" data-url="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/"></div>
+    <div class="ds-thread " data-thread-key="2016/11/18/spring-boot-logging-slf4j/" data-title="寻根究底 Logging - SLF4J 概述" data-url="https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;

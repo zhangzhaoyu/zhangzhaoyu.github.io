@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zhangzhaoyu.github.io/2016/10/08/introduction-of-singleton-design-pattern/</loc>
+    <loc>https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</loc>
     
-    <lastmod>2016-11-18T13:25:21.372Z</lastmod>
+    <lastmod>2016-11-18T14:56:17.148Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</loc>
+    <loc>https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/</loc>
     
-    <lastmod>2016-11-17T09:34:16.487Z</lastmod>
+    <lastmod>2016-11-18T14:56:11.556Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhangzhaoyu.github.io/2016/10/08/introduction-of-singleton-design-pattern/</loc>
+    
+    <lastmod>2016-11-18T13:25:21.372Z</lastmod>
     
   </url>
   

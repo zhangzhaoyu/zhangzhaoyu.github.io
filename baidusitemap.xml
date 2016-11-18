@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</loc>
+    <lastmod>2016-11-18T14:56:17.148Z</lastmod>
+    <data>
+        <display>
+        <title>寻根究底 Logging - Spring Boot 日志概述</title>
+        <pubTime>2016-11-16T14:07:26.000Z</pubTime>
+        
+        <tag>-logging</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring Boot" url="https://zhangzhaoyu.github.io/categories/Spring-Boot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/</loc>
+    <lastmod>2016-11-18T14:56:11.556Z</lastmod>
+    <data>
+        <display>
+        <title>寻根究底 Logging - SLF4J 概述</title>
+        <pubTime>2016-11-18T13:50:01.000Z</pubTime>
+        
+        <tag>SLF4J</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring Boot" url="https://zhangzhaoyu.github.io/categories/Spring-Boot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zhangzhaoyu.github.io/2016/10/08/introduction-of-singleton-design-pattern/</loc>
     <lastmod>2016-11-18T13:25:21.372Z</lastmod>
     <data>
@@ -18,23 +58,6 @@
              
               <breadCrumb title="设计模式" url="https://zhangzhaoyu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</loc>
-    <lastmod>2016-11-17T09:34:16.487Z</lastmod>
-    <data>
-        <display>
-        <title>寻根究底 - Spring Boot 日志概述(1)</title>
-        <pubTime>2016-11-16T14:07:26.000Z</pubTime>
-        
-        <tag>-logging</tag>
-         
-         
-           
         </display>
     </data>
     </url>
