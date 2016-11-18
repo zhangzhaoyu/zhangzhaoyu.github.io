@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangzhaoyu.github.io/"/>
-  <updated>2016-11-18T15:26:42.467Z</updated>
+  <updated>2016-11-18T15:31:31.871Z</updated>
   <id>https://zhangzhaoyu.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/"/>
     <id>https://zhangzhaoyu.github.io/2016/11/18/spring-boot-logging-slf4j/</id>
     <published>2016-11-18T13:50:01.000Z</published>
-    <updated>2016-11-18T15:26:42.467Z</updated>
+    <updated>2016-11-18T15:31:31.871Z</updated>
     
     <content type="html"><![CDATA[<h1 id="SLF4J-概述"><a href="#SLF4J-概述" class="headerlink" title="SLF4J 概述"></a>SLF4J 概述</h1><p><code>SLF4J(Simple Logging Facade for Java)</code> 是一个抽象的Java 日志框架门面。它不关注日志的具体实现方法，会在<code>deployment time</code>自动的发现日志的实现类。目前SLF4J 支持的日志实现框架有<code>java.util.logging</code>，<code>logback</code> 和<code>log4j</code>。SLf4J 在运行时，仅仅只需要依赖<code>slf4j-api-1.7.21.jar</code>。</p>
 <a id="more"></a>
@@ -37,7 +37,7 @@
 <p>需要注意的是不要同时在<code>classpath</code> 包含多个日志实现类。否则SLF4J 会报错。在SLF4J 1.6 之后的版本中，在<code>classpath</code> 没有绑定实现类，不会跑出错误，仅仅是警告提示。</p>
 </blockquote>
 <h2 id="MDC-支持"><a href="#MDC-支持" class="headerlink" title="MDC 支持"></a>MDC 支持</h2><p><code>MDC(Mapped Diagnostic Context)</code>基本上来说是一个由日志框架管理的<code>map</code> 对象。应用程序代码可以将<code>key-code</code> 存储在对象上。之后，日志框架可以取出MDC 中的数据，输出到日志信息中。如果日志实现框架支持MDC，SLF4J 将会代理对应的日志框架管理MDC。目前只有log4j 和 logback 支持。</p>
-<h2 id="日志桥接"><a href="#日志桥接" class="headerlink" title="日志桥接"></a>日志桥接</h2><p>通常我们的应用程序会依赖不同的JAR 包，而不同的JAR 又由于各自的选择会有各种不同的日志实现框架。因此，如何在一个应用中来统一日志的输出形式，是一个需要解决的问题。SLF4J 提供了<code>Bridging legacy APIs</code> 来实现该功能。下图描述如在各种日志绑定实现框架下，如果做桥接的实现。<br>![SLF4J 日志桥接功能][legacy.png]</p>
+<h2 id="日志桥接"><a href="#日志桥接" class="headerlink" title="日志桥接"></a>日志桥接</h2><p>通常我们的应用程序会依赖不同的JAR 包，而不同的JAR 又由于各自的选择会有各种不同的日志实现框架。因此，如何在一个应用中来统一日志的输出形式，是一个需要解决的问题。SLF4J 提供了<code>Bridging legacy APIs</code> 来实现该功能。下图描述如在各种日志绑定实现框架下，如果做桥接的实现。<br><img src="legacy.png" alt="SLF4J 日志桥接功能"></p>
 <ul>
 <li>JCL to SLF4J : 从Jakarta Commons Logging 桥接到SLF4J 需要使用<code>jcl-over-slf4j.jar</code>。它实现了JCL 的公共的API 接口，但是底部却是调用的SLF4J。由它替换到<code>commons-logging.jar</code>。同时可以解决commons logging 的classloader 问题。<code>jcl-over-slf4j.jar</code> 不能跟 <code>slf4j-jcl.jar</code> 同时使用。</li>
 <li>log4j-over-slf4j : 不改变一行代码的情况下，将log4j 桥接到slf4j。仅仅需要使用<code>log4j-over-slf4j.jar</code>替换<code>log4j.jar</code>。<code>log4j-over-slf4j.jar</code>和<code>slf4j-log4j12.jar</code> 不能同时出现。</li>
