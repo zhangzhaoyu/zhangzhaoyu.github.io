@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="TRAMP 的博客">
 <meta property="og:description" content="SLF4J 概述SLF4J(Simple Logging Facade for Java) 是一个抽象的Java 日志框架门面。它不关注日志的具体实现方法，会在deployment time自动的发现日志的实现类。目前SLF4J 支持的日志实现框架有java.util.logging，logback 和log4j。SLf4J 在运行时，仅仅只需要依赖slf4j-api-1.7.21.jar。">
 <meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/spring/spring.png">
-<meta property="og:updated_time" content="2016-11-18T15:44:28.683Z">
+<meta property="og:updated_time" content="2016-11-18T15:46:54.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="寻根究底 Logging - SLF4J 日志Facade 概述">
 <meta name="twitter:description" content="SLF4J 概述SLF4J(Simple Logging Facade for Java) 是一个抽象的Java 日志框架门面。它不关注日志的具体实现方法，会在deployment time自动的发现日志的实现类。目前SLF4J 支持的日志实现框架有java.util.logging，logback 和log4j。SLf4J 在运行时，仅仅只需要依赖slf4j-api-1.7.21.jar。">
@@ -262,12 +262,12 @@ var _hmt = _hmt || [];
 <a id="more"></a>
 <h1 id="SLF4J-详解"><a href="#SLF4J-详解" class="headerlink" title="SLF4J 详解"></a>SLF4J 详解</h1><h2 id="日志实现框架的切换机制"><a href="#日志实现框架的切换机制" class="headerlink" title="日志实现框架的切换机制"></a>日志实现框架的切换机制</h2><p>SLF4J 支持多种不同的日志实现框架。要实现各种日志实现框架的切换只需要在<code>classpath</code> 中包含对应的转换和实现JAR 包即可。如下图所示：<br><img src="concrete-bindings.png" alt="SLF4J 日志实现框架配置图"></p>
 <ul>
-<li><code>slf4j-simple-1.7.21.jar</code> : SLF4J 提供的日志简单的输出类，将把所有的错误信息输出到<code>System.err</code>，该实现方法在比较小的应用用比较实用</li>
-<li><code>slf4j-log4j12-1.7.21.jar</code> : 绑定Log4j 的实现，还需要在<code>classpath</code> 中加入<code>log4j.jar</code></li>
-<li><code>slf4j-jdk14-1.7.21.jar</code> : 绑定java.util.logging，需要JDK 1.4 以上</li>
-<li><code>logback-classic-1.0.13.jar</code> : 绑定logback 实现，还需要加入<code>logback-core-1.0.13.jar</code>。logback 是默认实现SLF4J 的日志输出实现类。经作者测试性能要远远高于log4j</li>
-<li><code>slf4j-jcl-1.7.21.jar</code> : 该绑定会将所有的SLF4J 代理到JCL(Jakarta Commons Logging)</li>
-<li><code>slf4j-nop-1.7.21.jar</code> : 绑定为了NOP，所有的日志将不会被输出</li>
+<li><code>slf4j-simple-1.7.21.jar</code> : SLF4J 提供的日志简单的输出类，将把所有的错误信息输出到<code>System.err</code>，该实现方法在比较小的应用比较实用。</li>
+<li><code>slf4j-log4j12-1.7.21.jar</code> : 绑定Log4j 的实现，还需要在<code>classpath</code> 中加入<code>log4j.jar</code>。</li>
+<li><code>slf4j-jdk14-1.7.21.jar</code> : 绑定java.util.logging，需要JDK 1.4 以上。</li>
+<li><code>logback-classic-1.0.13.jar</code> : 绑定logback 实现，还需要加入<code>logback-core-1.0.13.jar</code>。logback 是默认实现SLF4J 的日志输出实现类。经作者测试性能要远远高于log4j。</li>
+<li><code>slf4j-jcl-1.7.21.jar</code> : 该绑定会将所有的SLF4J 代理到JCL(Jakarta Commons Logging)。</li>
+<li><code>slf4j-nop-1.7.21.jar</code> : 绑定为了NOP，所有的日志将不会被输出。</li>
 </ul>
 <blockquote>
 <p>需要注意的是不要同时在<code>classpath</code> 包含多个日志实现类。否则SLF4J 会报错。在SLF4J 1.6 之后的版本中，在<code>classpath</code> 没有绑定实现类，不会跑出错误，仅仅是警告提示。</p>
