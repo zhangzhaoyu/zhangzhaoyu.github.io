@@ -74,10 +74,13 @@
     <link href="https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/"/>
     <id>https://zhangzhaoyu.github.io/2016/11/16/spring-boot-logging-introduction/</id>
     <published>2016-11-16T14:07:26.000Z</published>
-    <updated>2016-11-18T14:56:17.148Z</updated>
+    <updated>2016-11-21T01:56:52.856Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Spring-Boot-日志概述"><a href="#Spring-Boot-日志概述" class="headerlink" title="Spring Boot 日志概述"></a>Spring Boot 日志概述</h1><p>Spring Boot 采用 <code>Commons Logging</code> 作为内部的日志框架。对于日志的具体实现，则没有限制。默认的提供了对<code>Java Util Logging</code>，<code>Log4J2</code> 和 <code>Logback</code> 的支持。每种方式下，<code>Console</code> 的日志输出，作为默认的日志输出。<br>在默认情况下，采用<code>Starters</code> 来启动Spring Boot 项目，<code>Logback</code> 是默认的日志实现方案。当然，Logback 路由能够保证依赖的包使用的其他日志也可以很好的工作。<br><a id="more"></a></p>
-<h1 id="默认日志"><a href="#默认日志" class="headerlink" title="默认日志"></a>默认日志</h1><h2 id="日志格式"><a href="#日志格式" class="headerlink" title="日志格式"></a>日志格式</h2><p>默认的日志格式如下所示：</p>
+<h1 id="默认日志"><a href="#默认日志" class="headerlink" title="默认日志"></a>默认日志</h1><h2 id="引入Staters-后的日志依赖"><a href="#引入Staters-后的日志依赖" class="headerlink" title="引入Staters 后的日志依赖"></a>引入Staters 后的日志依赖</h2><p>Spring Boot 采用<code>Starters</code> 的方式引入对应的<code>Jar</code> 后，会对应的引入基础的项目依赖项，包括日志的依赖项。由于<code>apache commons logging</code> 是一个历史悠久的日志框架，Spring 项目在<code>Core</code> 中对其进行了依赖。<br>当采用<code>org.springframework.boot:spring-boot-starter</code> 和 <code>org.springframework.boot:spring-boot-starter-web</code> 构建一个基础的Spring Boot项目时，项目产生的<code>Jar</code> 依赖如下图所示：</p>
+<p><img src="boot-log-dependency.png" alt="Spring Boot 基础项目依赖图"></p>
+<p>由上图可以看出，Spring Boot 的基础<code>spring-boot-starter</code> 引入后，自动引入了<code>SLF4J</code> 提供的桥接功能<code>org.slf4j:jcl-over-slf4j:jar</code> 将<code>JCL</code> 的日志实现桥接到<code>SLF4J</code> 上，而<code>SLF4J</code> 直接采用了<code>logback</code> 日志实现框架。同时，也引入了对其<code>JUL</code> 和<code>Log4j</code>桥接。当引入<code>spring-boot-starter-web</code> 后加入了对<code>org.jboss.logging:jboss-logging:jar</code> 的依赖。关于<code>SLF4J</code> 的具体介绍参见<a href="2016/11/18/spring-boot-logging-slf4j/">寻根究底 LOGGING - SLF4J 日志FACADE 概述</a>。</p>
+<h2 id="日志格式"><a href="#日志格式" class="headerlink" title="日志格式"></a>日志格式</h2><p>默认的日志格式如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2014-03-05 10:57:51.112  INFO 45469 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/7.0.52</div><div class="line">2014-03-05 10:57:51.253  INFO 45469 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]</div></pre></td></tr></table></figure>
 <p>具体的含义如下：</p>
 <ul>
