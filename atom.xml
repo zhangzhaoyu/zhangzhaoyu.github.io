@@ -174,6 +174,94 @@
   </entry>
   
   <entry>
+    <title>寻根究底ELKBX - Elasticsearch 概述</title>
+    <link href="https://zhangzhaoyu.github.io/2016/11/16/elkbx-2016-12-15-elasticsearch-learning-guide-01/"/>
+    <id>https://zhangzhaoyu.github.io/2016/11/16/elkbx-2016-12-15-elasticsearch-learning-guide-01/</id>
+    <published>2016-11-16T14:07:26.000Z</published>
+    <updated>2016-12-15T14:08:44.231Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Elasticsearch-概述"><a href="#Elasticsearch-概述" class="headerlink" title="Elasticsearch 概述"></a>Elasticsearch 概述</h1><p>Elasticsearch 是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：</p>
+<ul>
+<li>Web商店的商品搜索 ： 此场景下，可以使用Elasticsearch 来存储所有商品的目录和库存，提供搜索和自动的推荐建议。</li>
+<li>日志数据的统计分析 ： 采用ELKB 技术栈来对日志进行采集、格式化清洗、存储和索引，是一个比较成熟的方案。</li>
+<li>商业智能分析 ： 采用ELKB 技术栈，可以对商业数据进行快速的调查，分析以及对特定的商品对进行追踪。将特定用户感兴趣的数据直接推送给用户。可以采用Kibana 直接对结果进行可视化。</li>
+</ul>
+<a id="more"></a>
+<h1 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="近乎实时-Near-Realtime"><a href="#近乎实时-Near-Realtime" class="headerlink" title="近乎实时(Near Realtime)"></a>近乎实时(Near Realtime)</h3><p>Elasticsearch 是一个近乎实时的搜索平台。这意味着，其有近乎1秒的数据延迟，从你将数据索引到Elasticsearch 到能够从Elasticsearch 中查询中。</p>
+<h3 id="集群-cluster"><a href="#集群-cluster" class="headerlink" title="集群(cluster)"></a>集群(cluster)</h3><p>一个集群是拥有多个节点来存储所有的数据，并提跨越所有节点的索引和查询功能。集群通过集群的名字来标识。默认的集群名字是<code>Elasticsearch</code>。Node 通过自己配置的名字来加入对应的集群。</p>
+<h3 id="节点-Node"><a href="#节点-Node" class="headerlink" title="节点(Node)"></a>节点(Node)</h3><p>一个节点是一个单机的服务器。集群由多个节点组成。一个节点通过节点的名字在一个集群中进行标识。节点的名字默认会由一个UUID 来标识，也可以自己在配置文件中进行配置。</p>
+<h3 id="索引-Index"><a href="#索引-Index" class="headerlink" title="索引(Index)"></a>索引(Index)</h3><p>一个索引是一个具有相似特点的文档的集合。类似于关系型数据库中的数据库。一个索引由其名字进行标识。用户通过索引名字来对索引进行各种操作。</p>
+<h3 id="类型-Type"><a href="#类型-Type" class="headerlink" title="类型(Type)"></a>类型(Type)</h3><p>在一个索引内，可以定义多个类型。一个类型就是一个索引的逻辑上的划分。通常类型定义了一系列具有相同字段的文档结构。</p>
+<h3 id="文档-Document"><a href="#文档-Document" class="headerlink" title="文档(Document)"></a>文档(Document)</h3><p>文档是能够被检索的数据的最小单位。一个文档可以是一个用户，一件商品。文档采用JSON 的结构来进行存储。实际上，一个文档必须被存储到一个索引的具体类型中。</p>
+<h3 id="分片-amp-副本-Shards-amp-Replicas"><a href="#分片-amp-副本-Shards-amp-Replicas" class="headerlink" title="分片&amp;副本(Shards&amp;Replicas)"></a>分片&amp;副本(Shards&amp;Replicas)</h3><p>在单个节点上一个索引可以存储大量的数据，直到硬件的限制。但是，将大量的数据(TB&amp;PB)存储到单个节点会严重的影响数据的查询速度。为了解决数据的安全性和快速查询的需求，Elasticsearch 提供了将数据进行分片和进行多副本的存储。<br>每一个分片都是一个全功能的独立索引。可以被分不到集群中的任意节点。分片可以提供一下功能：</p>
+<ul>
+<li>允许你水平的分割和扩展数据的存储空间</li>
+<li>允许你以分散的方式并行地对数据进行处理，提供系统整体对外的性能和吞吐量</li>
+</ul>
+<p>具体的如何将数据进行分片存储以及查询的时候将数据聚合都由Elasticsearch 来完成，对用户是透明的。</p>
+<p>在联网环境，任何时间都可能出现故障。因此，十分有必要地为每一个分片的数据提供一种失败机制。基于此，Elasticsearch 允许一个索引分片的多个副本存在。，并且可以存储在多个不同的节点。副本可以解决一下问题：</p>
+<ul>
+<li>分片或者节点失败时，仍然保证高可用性。基于次，应该将不同的副本存储到不同的节点上</li>
+<li>允许并行地将查询操作分散到各个不同的节点副本，方便地对系统的吞吐量进行扩展</li>
+</ul>
+<p>简而言之，每一个索引都可以被分成多个分片。一个索引可以拥有0到多个的副本。一旦复制了，每一个索引分片都将拥有一个主副本分片和多个分片。分片和副本的数量可以再创建索引的时候指定。当索引创建后，可以随意更新副本的数量，但是不可以更改分片的数量了。</p>
+<p>默认的，Elasticsearch 中的每一个索引会拥有5个主分片和1个副本。这意味着，至少需要两个节点组成的集群。总共将拥有5个主分片和5个副本复制分片。</p>
+<blockquote>
+<blockquote>
+<p>每一个Elasticsearch 的分片都是一个Lucene 的索引。一个索引能够存储的最大的文档数量是Inetger.MAX_VALUE -128 = 2147483519。可以采用<code>_cat/shards</code> api 对分片的大小进行监控。</p>
+</blockquote>
+</blockquote>
+<h1 id="ELasticsearch-安装"><a href="#ELasticsearch-安装" class="headerlink" title="ELasticsearch 安装"></a>ELasticsearch 安装</h1><h2 id="Jdk"><a href="#Jdk" class="headerlink" title="Jdk"></a>Jdk</h2><p>Elasticsearch 官方推荐Oracle JDK 8(1.8.0_73)以上。因此，在安装前请检查JDK 版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java -version</div><div class="line"><span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></div></pre></td></tr></table></figure>
+<h2 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h2><p>Elasticsearch 官方提供各个平台的不同安装方式，包括rpm, deb 和压缩包。本文采用压缩包进行安装：</p>
+<ol>
+<li><p>下载压缩文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.1.1.tar.gz</div><div class="line">wget -c https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.1.1.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>解压缩运行</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar -zxvf elasticsearch-5.1.1.tar.gz</div><div class="line">cd elasticsearch-5.1.1/bin</div><div class="line">./elasticsearch</div></pre></td></tr></table></figure>
+<p>运行后，默认的集群名字为<code>Elasticsearch</code>， 节点名字为随机的UUID。Elasticsearch 会在<code>9200</code>端口开放<code>RESTFul</code>接口，后文会介绍这些接口。同时在<code>9300</code> 端口监听新加入的节点，组成集群。</p>
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><p>Elasticsearch 默认提供了一些命令行配置， 采用：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./elasticsearch -h</div></pre></td></tr></table></figure></p>
+<p>可以查看详细的信息，包括一下列表：</p>
+<ul>
+<li><code>-E &lt;KeyValuePair&gt;</code> 配置系统的参数，例如 <code>./elasticsearch -Ecluster.name=my_cluster_name -Enode.name=my_node_name</code> 配置系统的集群名字和节点名字</li>
+<li><code>-V, --version</code> 查看版本信息，并退出</li>
+<li><code>-d, --daemonize</code> 在后台运行Elasticsearch</li>
+<li><code>-h, --help</code> 打印帮助信息</li>
+<li><code>-p, --pidfile &lt;path&gt;</code> 将Elasticsearch 的启动后的PID 保存到文件</li>
+<li><code>-s, --silent</code> 显示很少的日志</li>
+<li><code>-v, --verbose</code> 显示冗长的日志</li>
+</ul>
+<p>Elasticsearch 的配置文件提供了大量的可配置属性，在实际的生产环境，可以针对实际的使用来进行配置。详细的参数介绍，会在后文进行阐述。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文作为Elasticsearch 介绍的第一篇，介绍了其使用场景已经相关的概念含义。同时，介绍了Elasticsearch 的基本安装。在此基础上，大家就可以愉快地玩耍了。</p>
+<h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><ol>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html" target="_blank" rel="external">Elasticsearch getting-started</a></li>
+</ol>
+<hr>
+<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/11/16/elkbx-2016-12-15-elasticsearch-learning-guide-01/">https://zhangzhaoyu.github.io/2016/11/16/elkbx-2016-12-15-elasticsearch-learning-guide-01/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Elasticsearch-概述&quot;&gt;&lt;a href=&quot;#Elasticsearch-概述&quot; class=&quot;headerlink&quot; title=&quot;Elasticsearch 概述&quot;&gt;&lt;/a&gt;Elasticsearch 概述&lt;/h1&gt;&lt;p&gt;Elasticsearch 是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web商店的商品搜索 ： 此场景下，可以使用Elasticsearch 来存储所有商品的目录和库存，提供搜索和自动的推荐建议。&lt;/li&gt;
+&lt;li&gt;日志数据的统计分析 ： 采用ELKB 技术栈来对日志进行采集、格式化清洗、存储和索引，是一个比较成熟的方案。&lt;/li&gt;
+&lt;li&gt;商业智能分析 ： 采用ELKB 技术栈，可以对商业数据进行快速的调查，分析以及对特定的商品对进行追踪。将特定用户感兴趣的数据直接推送给用户。可以采用Kibana 直接对结果进行可视化。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="elkbx" scheme="https://zhangzhaoyu.github.io/categories/elkbx/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://zhangzhaoyu.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ActiveMQ 寻根究低 - 点对点模式详解</title>
     <link href="https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/"/>
     <id>https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/</id>
