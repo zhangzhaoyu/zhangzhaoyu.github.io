@@ -266,7 +266,7 @@
     <link href="https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/"/>
     <id>https://zhangzhaoyu.github.io/2016/10/21/jms-activemq-queue-md/</id>
     <published>2016-10-21T06:52:32.000Z</published>
-    <updated>2016-10-24T05:09:47.312Z</updated>
+    <updated>2016-12-15T14:33:09.531Z</updated>
     
     <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本文在<a href="2016/10/19/jms-specification-introduction/">ActiveMQ 寻根究低 - JMS 规范概述</a>一问的基础上，探究点对点模式的具体变成实现方案，以及点对点模式在实际应用的的具体场景。<br><a id="more"></a></p>
 <h1 id="JMS-程序设计模式"><a href="#JMS-程序设计模式" class="headerlink" title="JMS 程序设计模式"></a>JMS 程序设计模式</h1><p>JMS 程序的模式主要是给予PTP 和 Pub/Sub 配置一些参数的不同来应用到不同的场景中。根据具体的业务对性能、对数据的安全性等再进行最终方案的选型。通用的结构如下图:<br><img src="jmsmodel.png" alt="JMS 程序设计的结构"></p>
@@ -310,7 +310,7 @@
     <link href="https://zhangzhaoyu.github.io/2016/10/19/jms-specification-introduction/"/>
     <id>https://zhangzhaoyu.github.io/2016/10/19/jms-specification-introduction/</id>
     <published>2016-10-19T06:55:02.000Z</published>
-    <updated>2016-10-21T04:37:17.255Z</updated>
+    <updated>2016-12-15T14:33:35.531Z</updated>
     
     <content type="html"><![CDATA[<h1 id="JMS-概述"><a href="#JMS-概述" class="headerlink" title="JMS 概述"></a>JMS 概述</h1><p>JMS1.1（Java Message Service）是Java 推出的访问已存在的消息产品的一种标准规范，也被称为消息中间件。 JMS 为Java 语言的客户端和Java 语言的中间曾服务使用这些消息系统提供了一种通用的方法。它主要是定义了消息语义，以及一组与之对应的Java 接口。JMS的规范包容了对Java 编程语言之外的其他语言的支持。</p>
 <a id="more"></a>
