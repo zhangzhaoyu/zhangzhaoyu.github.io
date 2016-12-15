@@ -7,24 +7,24 @@
     <meta name="google-site-verification" content="gpo3ea0rGprpET5g_RxvV2aCck9ML7LgjKUPPrGb8OA" />
     <meta name="baidu-site-verification" content="vQbbxwcRRY" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Elasticsearch 概述Elasticsearch 是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：
+    <meta name="description" content="Elasticsearch 概述Elasticsearch是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：
 
-Web商店的商品搜索 ： 此场景下，可以使用Elasticsearc">
+Web商店的商品搜索 ： 此场景下，可以使用Elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="寻根究底ELKBX - Elasticsearch 概述">
 <meta property="og:url" content="https://zhangzhaoyu.github.io/2016/12/15/elkbx-2016-12-15-elasticsearch-learning-guide-01/index.html">
 <meta property="og:site_name" content="TRAMP 的博客">
-<meta property="og:description" content="Elasticsearch 概述Elasticsearch 是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：
+<meta property="og:description" content="Elasticsearch 概述Elasticsearch是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：
 
-Web商店的商品搜索 ： 此场景下，可以使用Elasticsearc">
-<meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/thumbnail/elasticsearch.svg">
-<meta property="og:updated_time" content="2016-12-15T14:17:45.887Z">
+Web商店的商品搜索 ： 此场景下，可以使用Elasticsearch">
+<meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/thumbnail/elasticsearch.png">
+<meta property="og:updated_time" content="2016-12-15T14:22:50.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="寻根究底ELKBX - Elasticsearch 概述">
-<meta name="twitter:description" content="Elasticsearch 概述Elasticsearch 是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：
+<meta name="twitter:description" content="Elasticsearch 概述Elasticsearch是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：
 
-Web商店的商品搜索 ： 此场景下，可以使用Elasticsearc">
-<meta name="twitter:image" content="https://zhangzhaoyu.github.io/css/images/thumbnail/elasticsearch.svg">
+Web商店的商品搜索 ： 此场景下，可以使用Elasticsearch">
+<meta name="twitter:image" content="https://zhangzhaoyu.github.io/css/images/thumbnail/elasticsearch.png">
     
 
     
@@ -264,11 +264,11 @@ var _hmt = _hmt || [];
                 <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Elasticsearch-概述"><span class="toc-number">1.</span> <span class="toc-text">Elasticsearch 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基础介绍"><span class="toc-number">2.</span> <span class="toc-text">基础介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">2.1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#近乎实时-Near-Realtime"><span class="toc-number">2.1.1.</span> <span class="toc-text">近乎实时(Near Realtime)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集群-cluster"><span class="toc-number">2.1.2.</span> <span class="toc-text">集群(cluster)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节点-Node"><span class="toc-number">2.1.3.</span> <span class="toc-text">节点(Node)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引-Index"><span class="toc-number">2.1.4.</span> <span class="toc-text">索引(Index)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型-Type"><span class="toc-number">2.1.5.</span> <span class="toc-text">类型(Type)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文档-Document"><span class="toc-number">2.1.6.</span> <span class="toc-text">文档(Document)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分片-amp-副本-Shards-amp-Replicas"><span class="toc-number">2.1.7.</span> <span class="toc-text">分片&副本(Shards&Replicas)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ELasticsearch-安装"><span class="toc-number">3.</span> <span class="toc-text">ELasticsearch 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jdk"><span class="toc-number">3.1.</span> <span class="toc-text">Jdk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装方式"><span class="toc-number">3.2.</span> <span class="toc-text">安装方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他命令"><span class="toc-number">3.3.</span> <span class="toc-text">其他命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考引用"><span class="toc-number">5.</span> <span class="toc-text">参考引用</span></a></li></ol>
             </div>
             
-            <h1 id="Elasticsearch-概述"><a href="#Elasticsearch-概述" class="headerlink" title="Elasticsearch 概述"></a>Elasticsearch 概述</h1><p>Elasticsearch 是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：</p>
+            <h1 id="Elasticsearch-概述"><a href="#Elasticsearch-概述" class="headerlink" title="Elasticsearch 概述"></a>Elasticsearch 概述</h1><p><code>Elasticsearch</code>是一个高可扩展的开源的全文(<code>full text</code>) 分析引擎。它允许用户以近乎实时(<code>near real time</code>)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。<code>Elasticsearch</code> 可以被开发者灵活的运用到众多的场景中，如下：</p>
 <ul>
 <li>Web商店的商品搜索 ： 此场景下，可以使用Elasticsearch 来存储所有商品的目录和库存，提供搜索和自动的推荐建议。</li>
 <li>日志数据的统计分析 ： 采用ELKB 技术栈来对日志进行采集、格式化清洗、存储和索引，是一个比较成熟的方案。</li>
-<li>商业智能分析 ： 采用ELKB 技术栈，可以对商业数据进行快速的调查，分析以及对特定的商品对进行追踪。将特定用户感兴趣的数据直接推送给用户。可以采用Kibana 直接对结果进行可视化。</li>
+<li>商业智能分析 ： 采用ELKB 技术栈，可以对商业数据进行快速的调查，分析以及对特定的商品对进行追踪。将特定用户感兴趣的数据直接推送给用户。可以采用<code>Kibana</code> 直接对结果进行可视化。</li>
 </ul>
 <a id="more"></a>
 <h1 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="近乎实时-Near-Realtime"><a href="#近乎实时-Near-Realtime" class="headerlink" title="近乎实时(Near Realtime)"></a>近乎实时(Near Realtime)</h3><p>Elasticsearch 是一个近乎实时的搜索平台。这意味着，其有近乎1秒的数据延迟，从你将数据索引到Elasticsearch 到能够从Elasticsearch 中查询中。</p>
@@ -596,7 +596,7 @@ var _hmt = _hmt || [];
                             <a href="/2016/12/15/elkbx-2016-12-15-elasticsearch-learning-guide-01/" class="thumbnail">
     
     
-        <span style="background-image:url(/css/images/thumbnail/elasticsearch.svg)" alt="寻根究底ELKBX - Elasticsearch 概述" class="thumbnail-image"></span>
+        <span style="background-image:url(/css/images/thumbnail/elasticsearch.png)" alt="寻根究底ELKBX - Elasticsearch 概述" class="thumbnail-image"></span>
     
 </a>
 

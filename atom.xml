@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangzhaoyu.github.io/"/>
-  <updated>2016-12-15T14:17:45.887Z</updated>
+  <updated>2016-12-15T14:22:50.259Z</updated>
   <id>https://zhangzhaoyu.github.io/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="https://zhangzhaoyu.github.io/2016/12/15/elkbx-2016-12-15-elasticsearch-learning-guide-01/"/>
     <id>https://zhangzhaoyu.github.io/2016/12/15/elkbx-2016-12-15-elasticsearch-learning-guide-01/</id>
     <published>2016-12-15T14:17:26.000Z</published>
-    <updated>2016-12-15T14:17:45.887Z</updated>
+    <updated>2016-12-15T14:22:50.259Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Elasticsearch-概述"><a href="#Elasticsearch-概述" class="headerlink" title="Elasticsearch 概述"></a>Elasticsearch 概述</h1><p>Elasticsearch 是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：</p>
+    <content type="html"><![CDATA[<h1 id="Elasticsearch-概述"><a href="#Elasticsearch-概述" class="headerlink" title="Elasticsearch 概述"></a>Elasticsearch 概述</h1><p><code>Elasticsearch</code>是一个高可扩展的开源的全文(<code>full text</code>) 分析引擎。它允许用户以近乎实时(<code>near real time</code>)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。<code>Elasticsearch</code> 可以被开发者灵活的运用到众多的场景中，如下：</p>
 <ul>
 <li>Web商店的商品搜索 ： 此场景下，可以使用Elasticsearch 来存储所有商品的目录和库存，提供搜索和自动的推荐建议。</li>
 <li>日志数据的统计分析 ： 采用ELKB 技术栈来对日志进行采集、格式化清洗、存储和索引，是一个比较成熟的方案。</li>
-<li>商业智能分析 ： 采用ELKB 技术栈，可以对商业数据进行快速的调查，分析以及对特定的商品对进行追踪。将特定用户感兴趣的数据直接推送给用户。可以采用Kibana 直接对结果进行可视化。</li>
+<li>商业智能分析 ： 采用ELKB 技术栈，可以对商业数据进行快速的调查，分析以及对特定的商品对进行追踪。将特定用户感兴趣的数据直接推送给用户。可以采用<code>Kibana</code> 直接对结果进行可视化。</li>
 </ul>
 <a id="more"></a>
 <h1 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="近乎实时-Near-Realtime"><a href="#近乎实时-Near-Realtime" class="headerlink" title="近乎实时(Near Realtime)"></a>近乎实时(Near Realtime)</h3><p>Elasticsearch 是一个近乎实时的搜索平台。这意味着，其有近乎1秒的数据延迟，从你将数据索引到Elasticsearch 到能够从Elasticsearch 中查询中。</p>
@@ -87,11 +87,11 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Elasticsearch-概述&quot;&gt;&lt;a href=&quot;#Elasticsearch-概述&quot; class=&quot;headerlink&quot; title=&quot;Elasticsearch 概述&quot;&gt;&lt;/a&gt;Elasticsearch 概述&lt;/h1&gt;&lt;p&gt;Elasticsearch 是一个高可扩展的开源的全文(full text) 分析引擎。它允许用户以近乎实时(near real time)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。Elasticsearch 可以被开发者灵活的运用到众多的场景中，如下：&lt;/p&gt;
+      &lt;h1 id=&quot;Elasticsearch-概述&quot;&gt;&lt;a href=&quot;#Elasticsearch-概述&quot; class=&quot;headerlink&quot; title=&quot;Elasticsearch 概述&quot;&gt;&lt;/a&gt;Elasticsearch 概述&lt;/h1&gt;&lt;p&gt;&lt;code&gt;Elasticsearch&lt;/code&gt;是一个高可扩展的开源的全文(&lt;code&gt;full text&lt;/code&gt;) 分析引擎。它允许用户以近乎实时(&lt;code&gt;near real time&lt;/code&gt;)的速度对海量的数据进行存储、搜索和分析。同通常作为复杂搜索业务和需求的底层技术存在。&lt;code&gt;Elasticsearch&lt;/code&gt; 可以被开发者灵活的运用到众多的场景中，如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Web商店的商品搜索 ： 此场景下，可以使用Elasticsearch 来存储所有商品的目录和库存，提供搜索和自动的推荐建议。&lt;/li&gt;
 &lt;li&gt;日志数据的统计分析 ： 采用ELKB 技术栈来对日志进行采集、格式化清洗、存储和索引，是一个比较成熟的方案。&lt;/li&gt;
-&lt;li&gt;商业智能分析 ： 采用ELKB 技术栈，可以对商业数据进行快速的调查，分析以及对特定的商品对进行追踪。将特定用户感兴趣的数据直接推送给用户。可以采用Kibana 直接对结果进行可视化。&lt;/li&gt;
+&lt;li&gt;商业智能分析 ： 采用ELKB 技术栈，可以对商业数据进行快速的调查，分析以及对特定的商品对进行追踪。将特定用户感兴趣的数据直接推送给用户。可以采用&lt;code&gt;Kibana&lt;/code&gt; 直接对结果进行可视化。&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
