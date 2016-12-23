@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>寻根究底 Spring Security - 概述与快速启动 | TRAMP 的博客</title>
+    <meta name="google-site-verification" content="gpo3ea0rGprpET5g_RxvV2aCck9ML7LgjKUPPrGb8OA" />
+    <meta name="baidu-site-verification" content="vQbbxwcRRY" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="概述Spring Security 为基于Java-EE 的企业级应用提供了综合的安全管理功能。当前有很多方案来解决服务器级别的安全访问机制，但是当部署环境一改变，就有需要花费大量的时间来解决应用的安全问题。Spring Security很好地提供了WAR&amp;amp;EAR 级别的应用安全问题。应用的安全主要包含两个核心概念authentication 和authorization，即认证和授权。通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="寻根究底 Spring Security - 概述与快速启动">
+<meta property="og:url" content="https://zhangzhaoyu.github.io/2016/12/23/spring-security-2016-12-23-spring-security-01/index.html">
+<meta property="og:site_name" content="TRAMP 的博客">
+<meta property="og:description" content="概述Spring Security 为基于Java-EE 的企业级应用提供了综合的安全管理功能。当前有很多方案来解决服务器级别的安全访问机制，但是当部署环境一改变，就有需要花费大量的时间来解决应用的安全问题。Spring Security很好地提供了WAR&amp;amp;EAR 级别的应用安全问题。应用的安全主要包含两个核心概念authentication 和authorization，即认证和授权。通">
+<meta property="og:image" content="https://zhangzhaoyu.github.io/css/images/spring/spring.png">
+<meta property="og:updated_time" content="2016-12-23T09:09:46.671Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="寻根究底 Spring Security - 概述与快速启动">
+<meta name="twitter:description" content="概述Spring Security 为基于Java-EE 的企业级应用提供了综合的安全管理功能。当前有很多方案来解决服务器级别的安全访问机制，但是当部署环境一改变，就有需要花费大量的时间来解决应用的安全问题。Spring Security很好地提供了WAR&amp;amp;EAR 级别的应用安全问题。应用的安全主要包含两个核心概念authentication 和authorization，即认证和授权。通">
+<meta name="twitter:image" content="https://zhangzhaoyu.github.io/css/images/spring/spring.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TRAMP 的博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0fea9e168848e7221797106a355334d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TRAMP 的博客</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签云</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签云</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">张兆玉</h2>
+            <h3 id="title">R&amp;D &amp; Coder</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>中国 - 北京</span>
+            <a id="follow" target="_blank" href="https://github.com/zhangzhaoyu/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                10
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                9
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/zhangzhaoyu/" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/getmeng/" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-spring-security-2016-12-23-spring-security-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+            寻根究底 Spring Security - 概述与快速启动
+        </h1>
+    
+
+            
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/12/23/spring-security-2016-12-23-spring-security-01/">
+            <time datetime="2016-12-23T09:09:45.000Z" itemprop="datePublished">2016-12-23</time>
+        </a>
+    </div>
+
+
+                
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/spring-4-x/">spring 4.x</a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/security/">security</a>
+    </div>
+
+            </div>
+            
+        </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+            
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模块划分"><span class="toc-number">2.</span> <span class="toc-text">模块划分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Core"><span class="toc-number">2.1.</span> <span class="toc-text">Core</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remoting"><span class="toc-number">2.2.</span> <span class="toc-text">Remoting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.3.</span> <span class="toc-text">Web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Config"><span class="toc-number">2.4.</span> <span class="toc-text">Config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LDAP"><span class="toc-number">2.5.</span> <span class="toc-text">LDAP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ACL"><span class="toc-number">2.6.</span> <span class="toc-text">ACL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAS"><span class="toc-number">2.7.</span> <span class="toc-text">CAS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenID"><span class="toc-number">2.8.</span> <span class="toc-text">OpenID</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#启动Spring-Security"><span class="toc-number">3.</span> <span class="toc-text">启动Spring Security</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Web-基于注解的启动机制"><span class="toc-number">3.1.</span> <span class="toc-text">Spring Web 基于注解的启动机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动Spring-Security-1"><span class="toc-number">3.2.</span> <span class="toc-text">启动Spring Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#非Spring-MVC-应用"><span class="toc-number">3.2.1.</span> <span class="toc-text">非Spring MVC 应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-MVC应用的启动"><span class="toc-number">3.3.</span> <span class="toc-text">Spring MVC应用的启动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考引用"><span class="toc-number">5.</span> <span class="toc-text">参考引用</span></a></li></ol>
+            </div>
+            
+            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><code>Spring Security</code> 为基于<code>Java-EE</code> 的企业级应用提供了综合的安全管理功能。当前有很多方案来解决服务器级别的安全访问机制，但是当部署环境一改变，就有需要花费大量的时间来解决应用的安全问题。<code>Spring Security</code>很好地提供了<code>WAR&amp;EAR</code> 级别的应用安全问题。<br>应用的安全主要包含两个核心概念<code>authentication</code> 和<code>authorization</code>，即认证和授权。通过认证识别身份，通过授权获取能够访问的资源的权限。<br><a id="more"></a></p>
+<p>在应用级别<code>Spring Security</code> 支持各种级别的授权模型，常见的类型包括：</p>
+<ul>
+<li>HTTP BASIC authentication headers</li>
+<li>HTTP Digest authentication headers</li>
+<li>HTTP X.509 client certificate exchange</li>
+<li>Form-based authentication</li>
+<li>Jasig Central Authentication Service (otherwise known as CAS, which is a popular open source single sign-on system)</li>
+<li>LDAP (a very common approach to cross-platform authentication needs, especially in large environments)</li>
+<li>OpenID authentication</li>
+</ul>
+<p>除上面描述之外，还支持其他众多方案，具体参见<a href="http://docs.spring.io/spring-security/site/docs/4.2.0.RELEASE/reference/htmlsingle/" target="_blank" rel="external">Spring Security Document</a>。</p>
+<p><code>Spring Security</code> 主要解决以下三个方面的安全问题：</p>
+<ul>
+<li>授权Web 请求</li>
+<li>授权防范的调用</li>
+<li>授权访问个人的领域对象</li>
+</ul>
+<h1 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h1><h2 id="Core"><a href="#Core" class="headerlink" title="Core"></a>Core</h2><p><code>spring-security-core.jar</code> 包含核心的认证和访问控制类和接口，远程支持，以及供应用使用的基本的<code>spring-security</code> 的接口。支持独立的应用程序，远程的客户端，方法层的安全和基于JDBC的用户存储。包含以下核心目录：</p>
+<ul>
+<li>org.springframework.security.core</li>
+<li>org.springframework.security.access</li>
+<li>org.springframework.security.authentication</li>
+<li>org.springframework.security.provisioning</li>
+</ul>
+<h2 id="Remoting"><a href="#Remoting" class="headerlink" title="Remoting"></a>Remoting</h2><p>提供了与<code>spring remoting</code> 的集成。核心包为<code>org.springframework.security.remoting</code>。</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><p>包含过滤器(filters)和Web 安全相关的基础代码。当采用<code>spring security web authentication services</code> 和<code>URL-based</code>访问控制时需要使用。主要的包为<code>org.springframework.security.web</code>。</p>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>包含<code>spring security namespace</code> 的解析代码和<code>Java Configuration Code</code> 的相关接口。当使用XML和Java 注解的方式配置应用时需要用到。主要的包为<code>org.springframework.security.config</code>。</p>
+<h2 id="LDAP"><a href="#LDAP" class="headerlink" title="LDAP"></a>LDAP</h2><p>LDAP authentication and provisioning code。核心的包为<code>org.springframework.security.ldap</code>。</p>
+<h2 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h2><p>专业的领域对象ACL 实现。用来为领域对象的访问提供安全机制。核心包为<code>org.springframework.security.acls</code>。</p>
+<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>CAS 客户端的集成工具。当需要集成几个基于CAS的单点登录系统时需要使用。核心包为<code>org.springframework.security.cas</code>。</p>
+<h2 id="OpenID"><a href="#OpenID" class="headerlink" title="OpenID"></a>OpenID</h2><p><code>spring-security.openid.jar</code> 提供对OpenID 的支持。核心包为<code>org.springframework.security.openid</code>。需要<code>OpenID4Java</code>。</p>
+<h1 id="启动Spring-Security"><a href="#启动Spring-Security" class="headerlink" title="启动Spring Security"></a>启动Spring Security</h1><h2 id="Spring-Web-基于注解的启动机制"><a href="#Spring-Web-基于注解的启动机制" class="headerlink" title="Spring Web 基于注解的启动机制"></a>Spring Web 基于注解的启动机制</h2><p><code>Java-EE</code> 规范为了实现不通过<code>web.xml</code> 启动Java-EE 项目定义了基于SPI(Service Provider Interface)机制的<code>javax.servlet.ServletContainerInitializer</code> 接口。通过<a href="http://tramp-zzy.iteye.com/blog/2310514" target="_blank" rel="external">SPI 机制</a><code>Java-EE</code>容器启动后，会在<code>classpath</code>中寻找上述接口的实现类，并回调该接口提供的方法。<br><code>Spring Web</code> 就是采用上述机制来实现Web 相关内容的初始化工作的。<code>org.springframework.web.SpringServletContainerInitializer</code> 既为<code>Spring Web</code>中实现<code>javax.servlet.Servletcontainerinitializer</code> 接口的类，具体代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@HandlesTypes</span>(WebApplicationInitializer.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringServletContainerInitializer</span> <span class="keyword">implements</span> <span class="title">ServletContainerInitializer</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartup</span><span class="params">(Set&lt;Class&lt;?&gt;&gt; webAppInitializerClasses, ServletContext servletContext)</span></span></div><div class="line">			<span class="keyword">throws</span> ServletException &#123;</div><div class="line"></div><div class="line">		List&lt;WebApplicationInitializer&gt; initializers = <span class="keyword">new</span> LinkedList&lt;WebApplicationInitializer&gt;();</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (webAppInitializerClasses != <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">for</span> (Class&lt;?&gt; waiClass : webAppInitializerClasses) &#123;</div><div class="line">				<span class="comment">// Be defensive: Some servlet containers provide us with invalid classes,</span></div><div class="line">				<span class="comment">// no matter what @HandlesTypes says...</span></div><div class="line">				<span class="keyword">if</span> (!waiClass.isInterface() &amp;&amp; !Modifier.isAbstract(waiClass.getModifiers()) &amp;&amp;</div><div class="line">						WebApplicationInitializer.class.isAssignableFrom(waiClass)) &#123;</div><div class="line">					<span class="keyword">try</span> &#123;</div><div class="line">						initializers.add((WebApplicationInitializer) waiClass.newInstance());</div><div class="line">					&#125;</div><div class="line">					<span class="keyword">catch</span> (Throwable ex) &#123;</div><div class="line">						<span class="keyword">throw</span> <span class="keyword">new</span> ServletException(<span class="string">"Failed to instantiate WebApplicationInitializer class"</span>, ex);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (initializers.isEmpty()) &#123;</div><div class="line">			servletContext.log(<span class="string">"No Spring WebApplicationInitializer types detected on classpath"</span>);</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		servletContext.log(initializers.size() + <span class="string">" Spring WebApplicationInitializers detected on classpath"</span>);</div><div class="line">		AnnotationAwareOrderComparator.sort(initializers);</div><div class="line">		<span class="keyword">for</span> (WebApplicationInitializer initializer : initializers) &#123;</div><div class="line">			initializer.onStartup(servletContext);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>从上述代码上，我们可以看到Spring 在启动后调用了<code>org.springframework.web.WebApplicationInitializer</code> 的实现类的<code>onStartup()</code> 方法。</p>
+<h2 id="启动Spring-Security-1"><a href="#启动Spring-Security-1" class="headerlink" title="启动Spring Security"></a>启动Spring Security</h2><p>启动spring Security 需要注册<code>springSecurityFilterChain</code>，同时<code>Spring Security</code> 提供了<code>WebSecurityConfigurerAdapter</code> 来对Spring Security 进行配置。</p>
+<h3 id="非Spring-MVC-应用"><a href="#非Spring-MVC-应用" class="headerlink" title="非Spring MVC 应用"></a>非Spring MVC 应用</h3><p>在非基于注解的Spring 应用中不能采用Sevlet 容器的SPI机制来进行启动，因此需要将<code>WebSecurityConfig.class</code> 传递给<code>AbstractSecurityWebApplicationInitializer</code>的构造函数，来启动<code>Spring Security</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@EnableWebSecurity</span></div><div class="line"><span class="meta">@EnableGlobalMethodSecurity</span></div><div class="line"><span class="meta">@EnableGlobalAuthentication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span> </span>&#123;</div><div class="line">    <span class="comment">// do our self http config, we user WebSecurityConfigurerAdapter</span></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureGlobal</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        auth.inMemoryAuthentication()</div><div class="line">                .withUser(<span class="string">"user"</span>).password(<span class="string">"password"</span>).roles(<span class="string">"USER"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        http</div><div class="line">                .authorizeRequests()</div><div class="line">                    .anyRequest().authenticated()</div><div class="line">                    .and()</div><div class="line">                .formLogin()</div><div class="line">                    .loginPage(<span class="string">"/login"</span>)</div><div class="line">                    .permitAll();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecurityWebApplicationInitializer</span></span></div><div class="line">	<span class="keyword">extends</span> <span class="title">AbstractSecurityWebApplicationInitializer</span> &#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SecurityWebApplicationInitializer</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>(WebSecurityConfig.class);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过以上配置可以得到以下功能：</p>
+<ul>
+<li>所有URL 的访问都需要认证</li>
+<li>基于用户名密码的的认证</li>
+<li>允许用户logout</li>
+<li>X-XSS</li>
+<li>CSRF Fixation</li>
+<li>Session Fixation</li>
+<li>集成了Servlet API：<ul>
+<li>HttpServletRequest#getRemoteUser()</li>
+<li>HttpServletRequest.html#getUserPrincipal()</li>
+<li>HttpServletRequest.html#isUserInRole(java.lang.String)</li>
+<li>HttpServletRequest.html#login(java.lang.String, java.lang.String)</li>
+<li>HttpServletRequest.html#logout()</li>
+</ul>
+</li>
+<li>……</li>
+</ul>
+<h2 id="Spring-MVC应用的启动"><a href="#Spring-MVC应用的启动" class="headerlink" title="Spring MVC应用的启动"></a>Spring MVC应用的启动</h2><p>基于Spring MVC 的应用由SPI 机制启动，因此需要由<code>Spring MVC</code>来加载<code>Spring Security</code>的配置。因此，注册<code>springsecurityfilterchain</code>仅仅需要实现<code>AbstractSecurityWebApplicationInitializer</code> 即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecurityWebApplicationInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractSecurityWebApplicationInitializer</span> </span>&#123;</div><div class="line">    <span class="comment">// register springSecurityFilterChain</span></div><div class="line">    <span class="comment">// with out exist spring mvc, we use AbstractSecurityWebApplicationInitializer</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Spring MVC 的启动Init 类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class&lt;?&gt;[]&#123;RootConfig.class, WebSecurityConfig.class&#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class&lt;?&gt;[]&#123;WebConfig.class&#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[]&#123;<span class="string">"/"</span>&#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Spring MVC 基于<code>JSP</code> 模板的配置：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="meta">@EnableWebMvc</span></div><div class="line"><span class="meta">@ComponentScan</span>(<span class="string">"org.zzy.spring.aop.web"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ViewResolver <span class="title">viewResolver</span><span class="params">()</span> </span>&#123;</div><div class="line">        InternalResourceViewResolver resourceViewResolver =</div><div class="line">                <span class="keyword">new</span> InternalResourceViewResolver();</div><div class="line">        resourceViewResolver.setPrefix(<span class="string">"/WEB-INF/views/"</span>);</div><div class="line">        resourceViewResolver.setSuffix(<span class="string">".jsp"</span>);</div><div class="line">        resourceViewResolver.setViewClass(JstlView.class);</div><div class="line">        resourceViewResolver.setExposeContextBeansAsAttributes(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">return</span> resourceViewResolver;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> MessageSource <span class="title">messageSource</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">/*ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();</span></div><div class="line">        messageSource.setBasename("messages/messages");*/</div><div class="line">        ReloadableResourceBundleMessageSource messageSource = <span class="keyword">new</span> ReloadableResourceBundleMessageSource();</div><div class="line">        messageSource.setBasename(<span class="string">"classpath:messages/messages"</span>);</div><div class="line">        messageSource.setCacheSeconds(<span class="number">10</span>);</div><div class="line">        <span class="keyword">return</span> messageSource;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureDefaultServletHandling</span><span class="params">(DefaultServletHandlerConfigurer configurer)</span> </span>&#123;</div><div class="line">        configurer.enable();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><code>Spring Security</code> 为应用级别的安全访问提供了许多开箱即用的功能。同时，用户也能基于自己的业务需求根据<code>Spring Security</code>暴露的接口进行个性化的开发。相关内容会在后续的n文章中进行介绍。本文对<code>Spring MVC</code>的启动机制进行了详细地址介绍，在此基础上也介绍了<code>Spring Security</code>的启动方式，相信读者会有很大收获。</p>
+<h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><ul>
+<li><a href="http://docs.spring.io/spring-security/site/docs/4.2.0.RELEASE/reference/htmlsingle/" target="_blank" rel="external">Spring Security Document</a></li>
+<li><a href="http://tramp-zzy.iteye.com/blog/2310514" target="_blank" rel="external">SPI 机制</a></li>
+<li><a href="http://tramp-zzy.iteye.com/blog/2319916" target="_blank" rel="external">Spring MVC 启动机制</a></li>
+</ul>
+<hr>
+<p>本文章采用<a href="https://creativecommons.org/licenses/by/2.5/cn/" target="_blank" rel="external">知识共享署名 2.5 中国大陆许可协议</a>进行许可。<br>欢迎转载，但转载请注明来自<a href="https://zhangzhaoyu.github.io/">张兆玉</a>，并保持转载后文章内容的完整。本人保留所有版权相关权利。<br>本文链接：<a href="https://zhangzhaoyu.github.io/2016/12/23/spring-security-2016-12-23-spring-security-01/">https://zhangzhaoyu.github.io/2016/12/23/spring-security-2016-12-23-spring-security-01/</a></p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="https://zhangzhaoyu.github.io/2016/12/23/spring-security-2016-12-23-spring-security-01/#comments" class="article-comment-link ds-thread-count" data-thread-key="2016/12/23/spring-security-2016-12-23-spring-security-01/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2016/12/15/elkbx-2016-12-15-elasticsearch-learning-guide-01/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">寻根究底ELKBX - Elasticsearch 概述</div>
+        </a>
+    
+</nav>
+
+
+    
+
+    <!-- donate -->
+    
+
+    
+    <!-- css -->
+    <style type="text/css">
+        .center {
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .donate_bar a.btn_donate{
+            display: inline-block;
+            width: 82px;
+            height: 82px;
+            background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+            _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+        <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+        因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+        为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+        嵌入其它博客时不一定要它们。 -->
+            -webkit-transition: background 0s;
+            -moz-transition: background 0s;
+            -o-transition: background 0s;
+            -ms-transition: background 0s;
+            transition: background 0s;
+        <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+        }
+
+        .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+        .donate_bar .donate_txt {
+            display: block;
+            color: #9d9d9d;
+            font: 14px/2 "Microsoft Yahei";
+        }
+        .bold{ font-weight: bold; }
+    </style>
+    <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+        <!-- btn_donate & tips -->
+        <div id="donate_board" class="donate_bar center">
+            <br>
+            ------------------------------------------------------------------------------------------------------------------------------
+            <br>
+            <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+            <span class="donate_txt">
+          欣赏此文？ Donate me !
+        </span>
+
+
+        </div>
+        <!-- /btn_donate & tips -->
+
+        <!-- donate guide -->
+
+        <div id="donate_guide" class="donate_bar center hidden">
+            <br>
+            ------------------------------------------------------------------------------------------------------------------------------
+            <br>
+
+            <a href="/css/images/weixin.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+                <img src="/css/images/weixin.jpg" title="微信打赏 Tramp" height="190px" width="auto"/>
+            </a>
+
+            &nbsp;&nbsp;
+
+            <a href="/css/images/zhifubao.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+                <img src="/css/images/zhifubao.jpg" title="支付宝打赏 Tramp" height="190px" width="auto"/>
+            </a>
+
+            <span class="donate_txt">
+          欣赏此文？ Donate me !
+        </span>
+
+        </div>
+        <!-- /donate guide -->
+
+        <!-- donate script -->
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                $('#donate_guide').removeClass('hidden');
+            }
+
+            function donate_on_web(){
+                $('#donate').submit();
+            }
+
+            var original_window_onload = window.onload;
+            window.onload = function () {
+                if (original_window_onload) {
+                    original_window_onload();
+                }
+                document.getElementById('donate_board_wdg').className = 'hidden';
+            }
+        </script>
+        <!-- /donate script -->
+    </div>
+    <!-- /Donate Module -->
+    
+    
+
+</article>
+
+
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread " data-thread-key="2016/12/23/spring-security-2016-12-23-spring-security-01/" data-title="寻根究底 Spring Security - 概述与快速启动" data-url="https://zhangzhaoyu.github.io/2016/12/23/spring-security-2016-12-23-spring-security-01/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+
+
+
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'anicloud'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/12/23/spring-security-2016-12-23-spring-security-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/spring/spring.png)" alt="寻根究底 Spring Security - 概述与快速启动" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/spring-4-x/">spring 4.x</a></p>
+                            <p class="item-title"><a href="/2016/12/23/spring-security-2016-12-23-spring-security-01/" class="title">寻根究底 Spring Security - 概述与快速启动</a></p>
+                            <p class="item-date"><time datetime="2016-12-23T09:09:45.000Z" itemprop="datePublished">2016-12-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/12/15/elkbx-2016-12-15-elasticsearch-learning-guide-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/thumb/elasticsearch.png)" alt="寻根究底ELKBX - Elasticsearch 概述" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/elkbx/">elkbx</a></p>
+                            <p class="item-title"><a href="/2016/12/15/elkbx-2016-12-15-elasticsearch-learning-guide-01/" class="title">寻根究底ELKBX - Elasticsearch 概述</a></p>
+                            <p class="item-date"><time datetime="2016-12-15T14:17:26.000Z" itemprop="datePublished">2016-12-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/18/spring-boot-logging-slf4j/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/spring/spring.png)" alt="寻根究底 Logging - SLF4J 日志Facade 概述" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Spring-Boot/">Spring Boot</a></p>
+                            <p class="item-title"><a href="/2016/11/18/spring-boot-logging-slf4j/" class="title">寻根究底 Logging - SLF4J 日志Facade 概述</a></p>
+                            <p class="item-date"><time datetime="2016-11-18T13:50:01.000Z" itemprop="datePublished">2016-11-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/16/spring-boot-logging-introduction/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/spring/spring.png)" alt="寻根究底 Logging - Spring Boot 日志概述" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Spring-Boot/">Spring Boot</a></p>
+                            <p class="item-title"><a href="/2016/11/16/spring-boot-logging-introduction/" class="title">寻根究底 Logging - Spring Boot 日志概述</a></p>
+                            <p class="item-date"><time datetime="2016-11-16T14:07:26.000Z" itemprop="datePublished">2016-11-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/10/21/jms-activemq-queue-md/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/thumb/mq.png)" alt="ActiveMQ 寻根究低 - 点对点模式详解" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/ActiveMQ/">ActiveMQ</a></p>
+                            <p class="item-title"><a href="/2016/10/21/jms-activemq-queue-md/" class="title">ActiveMQ 寻根究低 - 点对点模式详解</a></p>
+                            <p class="item-date"><time datetime="2016-10-21T06:52:32.000Z" itemprop="datePublished">2016-10-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ActiveMQ/">ActiveMQ</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-4-x/">Spring 4.x</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elkbx/">elkbx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring-4-x/">spring 4.x</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+<div class="widget-wrap">
+    <h3 class="widget-title">最近评论</h3>
+    <div class="widget">
+        <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="30"></ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 张兆玉<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. <br>
+            
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1260489787'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260489787%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+            
+            <br/>
+            <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">博客总点击量： <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'anicloud'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
